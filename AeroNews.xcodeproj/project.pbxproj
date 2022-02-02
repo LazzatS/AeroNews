@@ -18,6 +18,8 @@
 		128C00C327AAA5680097F1C4 /* AeroNewsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00C227AAA5680097F1C4 /* AeroNewsUITests.m */; };
 		128C00C527AAA5680097F1C4 /* AeroNewsUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00C427AAA5680097F1C4 /* AeroNewsUITestsLaunchTests.m */; };
 		128C00D427AAB3040097F1C4 /* NewsItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00D327AAB3040097F1C4 /* NewsItemModel.m */; };
+		128C00D827AAC1C00097F1C4 /* NewsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00D727AAC1C00097F1C4 /* NewsLoader.m */; };
+		128C00DD27AAC3220097F1C4 /* NewsXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00DC27AAC3220097F1C4 /* NewsXMLParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,11 @@
 		128C00C427AAA5680097F1C4 /* AeroNewsUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AeroNewsUITestsLaunchTests.m; sourceTree = "<group>"; };
 		128C00D227AAB3040097F1C4 /* NewsItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsItemModel.h; sourceTree = "<group>"; };
 		128C00D327AAB3040097F1C4 /* NewsItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsItemModel.m; sourceTree = "<group>"; };
+		128C00D627AAC1C00097F1C4 /* NewsLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsLoader.h; sourceTree = "<group>"; };
+		128C00D727AAC1C00097F1C4 /* NewsLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsLoader.m; sourceTree = "<group>"; };
+		128C00D927AAC25C0097F1C4 /* NewsParserProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsParserProtocol.h; sourceTree = "<group>"; };
+		128C00DB27AAC3220097F1C4 /* NewsXMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsXMLParser.h; sourceTree = "<group>"; };
+		128C00DC27AAC3220097F1C4 /* NewsXMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsXMLParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +114,8 @@
 		128C009B27AAA5650097F1C4 /* AeroNews */ = {
 			isa = PBXGroup;
 			children = (
+				128C00DA27AAC3060097F1C4 /* NewsParser */,
+				128C00D527AAC1A70097F1C4 /* NewsLoader */,
 				128C00D127AAB2D70097F1C4 /* NewsItemModel */,
 				128C009C27AAA5650097F1C4 /* AppDelegate.h */,
 				128C009D27AAA5650097F1C4 /* AppDelegate.m */,
@@ -147,6 +156,25 @@
 				128C00D327AAB3040097F1C4 /* NewsItemModel.m */,
 			);
 			path = NewsItemModel;
+			sourceTree = "<group>";
+		};
+		128C00D527AAC1A70097F1C4 /* NewsLoader */ = {
+			isa = PBXGroup;
+			children = (
+				128C00D927AAC25C0097F1C4 /* NewsParserProtocol.h */,
+				128C00D627AAC1C00097F1C4 /* NewsLoader.h */,
+				128C00D727AAC1C00097F1C4 /* NewsLoader.m */,
+			);
+			path = NewsLoader;
+			sourceTree = "<group>";
+		};
+		128C00DA27AAC3060097F1C4 /* NewsParser */ = {
+			isa = PBXGroup;
+			children = (
+				128C00DB27AAC3220097F1C4 /* NewsXMLParser.h */,
+				128C00DC27AAC3220097F1C4 /* NewsXMLParser.m */,
+			);
+			path = NewsParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,7 +310,9 @@
 				128C00A427AAA5650097F1C4 /* ViewController.m in Sources */,
 				128C00D427AAB3040097F1C4 /* NewsItemModel.m in Sources */,
 				128C009E27AAA5650097F1C4 /* AppDelegate.m in Sources */,
+				128C00D827AAC1C00097F1C4 /* NewsLoader.m in Sources */,
 				128C00AF27AAA5670097F1C4 /* main.m in Sources */,
+				128C00DD27AAC3220097F1C4 /* NewsXMLParser.m in Sources */,
 				128C00A127AAA5650097F1C4 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
