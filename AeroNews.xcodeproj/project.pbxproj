@@ -1,0 +1,624 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		128C009E27AAA5650097F1C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C009D27AAA5650097F1C4 /* AppDelegate.m */; };
+		128C00A127AAA5650097F1C4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00A027AAA5650097F1C4 /* SceneDelegate.m */; };
+		128C00A427AAA5650097F1C4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00A327AAA5650097F1C4 /* ViewController.m */; };
+		128C00A727AAA5650097F1C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 128C00A527AAA5650097F1C4 /* Main.storyboard */; };
+		128C00A927AAA5670097F1C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128C00A827AAA5670097F1C4 /* Assets.xcassets */; };
+		128C00AC27AAA5670097F1C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 128C00AA27AAA5670097F1C4 /* LaunchScreen.storyboard */; };
+		128C00AF27AAA5670097F1C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00AE27AAA5670097F1C4 /* main.m */; };
+		128C00B927AAA5680097F1C4 /* AeroNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00B827AAA5680097F1C4 /* AeroNewsTests.m */; };
+		128C00C327AAA5680097F1C4 /* AeroNewsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00C227AAA5680097F1C4 /* AeroNewsUITests.m */; };
+		128C00C527AAA5680097F1C4 /* AeroNewsUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00C427AAA5680097F1C4 /* AeroNewsUITestsLaunchTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		128C00B527AAA5680097F1C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 128C009127AAA5650097F1C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 128C009827AAA5650097F1C4;
+			remoteInfo = AeroNews;
+		};
+		128C00BF27AAA5680097F1C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 128C009127AAA5650097F1C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 128C009827AAA5650097F1C4;
+			remoteInfo = AeroNews;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		128C009927AAA5650097F1C4 /* AeroNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AeroNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		128C009C27AAA5650097F1C4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		128C009D27AAA5650097F1C4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		128C009F27AAA5650097F1C4 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		128C00A027AAA5650097F1C4 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		128C00A227AAA5650097F1C4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		128C00A327AAA5650097F1C4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		128C00A627AAA5650097F1C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		128C00A827AAA5670097F1C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		128C00AB27AAA5670097F1C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		128C00AD27AAA5670097F1C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		128C00AE27AAA5670097F1C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		128C00B427AAA5680097F1C4 /* AeroNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AeroNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		128C00B827AAA5680097F1C4 /* AeroNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AeroNewsTests.m; sourceTree = "<group>"; };
+		128C00BE27AAA5680097F1C4 /* AeroNewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AeroNewsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		128C00C227AAA5680097F1C4 /* AeroNewsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AeroNewsUITests.m; sourceTree = "<group>"; };
+		128C00C427AAA5680097F1C4 /* AeroNewsUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AeroNewsUITestsLaunchTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		128C009627AAA5650097F1C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128C00B127AAA5680097F1C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128C00BB27AAA5680097F1C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		128C009027AAA5650097F1C4 = {
+			isa = PBXGroup;
+			children = (
+				128C009B27AAA5650097F1C4 /* AeroNews */,
+				128C00B727AAA5680097F1C4 /* AeroNewsTests */,
+				128C00C127AAA5680097F1C4 /* AeroNewsUITests */,
+				128C009A27AAA5650097F1C4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		128C009A27AAA5650097F1C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				128C009927AAA5650097F1C4 /* AeroNews.app */,
+				128C00B427AAA5680097F1C4 /* AeroNewsTests.xctest */,
+				128C00BE27AAA5680097F1C4 /* AeroNewsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		128C009B27AAA5650097F1C4 /* AeroNews */ = {
+			isa = PBXGroup;
+			children = (
+				128C009C27AAA5650097F1C4 /* AppDelegate.h */,
+				128C009D27AAA5650097F1C4 /* AppDelegate.m */,
+				128C009F27AAA5650097F1C4 /* SceneDelegate.h */,
+				128C00A027AAA5650097F1C4 /* SceneDelegate.m */,
+				128C00A227AAA5650097F1C4 /* ViewController.h */,
+				128C00A327AAA5650097F1C4 /* ViewController.m */,
+				128C00A527AAA5650097F1C4 /* Main.storyboard */,
+				128C00A827AAA5670097F1C4 /* Assets.xcassets */,
+				128C00AA27AAA5670097F1C4 /* LaunchScreen.storyboard */,
+				128C00AD27AAA5670097F1C4 /* Info.plist */,
+				128C00AE27AAA5670097F1C4 /* main.m */,
+			);
+			path = AeroNews;
+			sourceTree = "<group>";
+		};
+		128C00B727AAA5680097F1C4 /* AeroNewsTests */ = {
+			isa = PBXGroup;
+			children = (
+				128C00B827AAA5680097F1C4 /* AeroNewsTests.m */,
+			);
+			path = AeroNewsTests;
+			sourceTree = "<group>";
+		};
+		128C00C127AAA5680097F1C4 /* AeroNewsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				128C00C227AAA5680097F1C4 /* AeroNewsUITests.m */,
+				128C00C427AAA5680097F1C4 /* AeroNewsUITestsLaunchTests.m */,
+			);
+			path = AeroNewsUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		128C009827AAA5650097F1C4 /* AeroNews */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 128C00C827AAA5680097F1C4 /* Build configuration list for PBXNativeTarget "AeroNews" */;
+			buildPhases = (
+				128C009527AAA5650097F1C4 /* Sources */,
+				128C009627AAA5650097F1C4 /* Frameworks */,
+				128C009727AAA5650097F1C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AeroNews;
+			productName = AeroNews;
+			productReference = 128C009927AAA5650097F1C4 /* AeroNews.app */;
+			productType = "com.apple.product-type.application";
+		};
+		128C00B327AAA5680097F1C4 /* AeroNewsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 128C00CB27AAA5680097F1C4 /* Build configuration list for PBXNativeTarget "AeroNewsTests" */;
+			buildPhases = (
+				128C00B027AAA5680097F1C4 /* Sources */,
+				128C00B127AAA5680097F1C4 /* Frameworks */,
+				128C00B227AAA5680097F1C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				128C00B627AAA5680097F1C4 /* PBXTargetDependency */,
+			);
+			name = AeroNewsTests;
+			productName = AeroNewsTests;
+			productReference = 128C00B427AAA5680097F1C4 /* AeroNewsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		128C00BD27AAA5680097F1C4 /* AeroNewsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 128C00CE27AAA5680097F1C4 /* Build configuration list for PBXNativeTarget "AeroNewsUITests" */;
+			buildPhases = (
+				128C00BA27AAA5680097F1C4 /* Sources */,
+				128C00BB27AAA5680097F1C4 /* Frameworks */,
+				128C00BC27AAA5680097F1C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				128C00C027AAA5680097F1C4 /* PBXTargetDependency */,
+			);
+			name = AeroNewsUITests;
+			productName = AeroNewsUITests;
+			productReference = 128C00BE27AAA5680097F1C4 /* AeroNewsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		128C009127AAA5650097F1C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					128C009827AAA5650097F1C4 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					128C00B327AAA5680097F1C4 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 128C009827AAA5650097F1C4;
+					};
+					128C00BD27AAA5680097F1C4 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 128C009827AAA5650097F1C4;
+					};
+				};
+			};
+			buildConfigurationList = 128C009427AAA5650097F1C4 /* Build configuration list for PBXProject "AeroNews" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 128C009027AAA5650097F1C4;
+			productRefGroup = 128C009A27AAA5650097F1C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				128C009827AAA5650097F1C4 /* AeroNews */,
+				128C00B327AAA5680097F1C4 /* AeroNewsTests */,
+				128C00BD27AAA5680097F1C4 /* AeroNewsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		128C009727AAA5650097F1C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128C00AC27AAA5670097F1C4 /* LaunchScreen.storyboard in Resources */,
+				128C00A927AAA5670097F1C4 /* Assets.xcassets in Resources */,
+				128C00A727AAA5650097F1C4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128C00B227AAA5680097F1C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128C00BC27AAA5680097F1C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		128C009527AAA5650097F1C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128C00A427AAA5650097F1C4 /* ViewController.m in Sources */,
+				128C009E27AAA5650097F1C4 /* AppDelegate.m in Sources */,
+				128C00AF27AAA5670097F1C4 /* main.m in Sources */,
+				128C00A127AAA5650097F1C4 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128C00B027AAA5680097F1C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128C00B927AAA5680097F1C4 /* AeroNewsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		128C00BA27AAA5680097F1C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128C00C527AAA5680097F1C4 /* AeroNewsUITestsLaunchTests.m in Sources */,
+				128C00C327AAA5680097F1C4 /* AeroNewsUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		128C00B627AAA5680097F1C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 128C009827AAA5650097F1C4 /* AeroNews */;
+			targetProxy = 128C00B527AAA5680097F1C4 /* PBXContainerItemProxy */;
+		};
+		128C00C027AAA5680097F1C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 128C009827AAA5650097F1C4 /* AeroNews */;
+			targetProxy = 128C00BF27AAA5680097F1C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		128C00A527AAA5650097F1C4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				128C00A627AAA5650097F1C4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		128C00AA27AAA5670097F1C4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				128C00AB27AAA5670097F1C4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		128C00C627AAA5680097F1C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		128C00C727AAA5680097F1C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		128C00C927AAA5680097F1C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8G73TT8TCG;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AeroNews/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cs.lazzatseiilova.AeroNews;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		128C00CA27AAA5680097F1C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8G73TT8TCG;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AeroNews/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cs.lazzatseiilova.AeroNews;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		128C00CC27AAA5680097F1C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8G73TT8TCG;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cs.lazzatseiilova.AeroNewsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AeroNews.app/AeroNews";
+			};
+			name = Debug;
+		};
+		128C00CD27AAA5680097F1C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8G73TT8TCG;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cs.lazzatseiilova.AeroNewsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AeroNews.app/AeroNews";
+			};
+			name = Release;
+		};
+		128C00CF27AAA5680097F1C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8G73TT8TCG;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cs.lazzatseiilova.AeroNewsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AeroNews;
+			};
+			name = Debug;
+		};
+		128C00D027AAA5680097F1C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8G73TT8TCG;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cs.lazzatseiilova.AeroNewsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AeroNews;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		128C009427AAA5650097F1C4 /* Build configuration list for PBXProject "AeroNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				128C00C627AAA5680097F1C4 /* Debug */,
+				128C00C727AAA5680097F1C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		128C00C827AAA5680097F1C4 /* Build configuration list for PBXNativeTarget "AeroNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				128C00C927AAA5680097F1C4 /* Debug */,
+				128C00CA27AAA5680097F1C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		128C00CB27AAA5680097F1C4 /* Build configuration list for PBXNativeTarget "AeroNewsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				128C00CC27AAA5680097F1C4 /* Debug */,
+				128C00CD27AAA5680097F1C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		128C00CE27AAA5680097F1C4 /* Build configuration list for PBXNativeTarget "AeroNewsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				128C00CF27AAA5680097F1C4 /* Debug */,
+				128C00D027AAA5680097F1C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 128C009127AAA5650097F1C4 /* Project object */;
+}
