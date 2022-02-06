@@ -12,14 +12,10 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
     if (self) {
-        NSDictionary *newsItem = dict[@"item"];
-        _title = newsItem[@"title"];
-        _link = newsItem[@"link"];
-        _itemDescription = newsItem[@"description"];
-        _pubDate = newsItem[@"pubDate"];
-        _videoURL = newsItem[@"guid"];
-        _enclosure = newsItem[@"enclosure"];
-        _ImageURL = newsItem[@"itunes:image"];
+        _title = dict[@"title"];
+        _link = dict[@"link"];
+        _itemDescription = dict[@"description"];
+        _pubDate = dict[@"pubDate"];
     }
     
     return self;

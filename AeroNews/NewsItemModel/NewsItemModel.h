@@ -16,10 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *link;
 @property (nonatomic, copy) NSString *itemDescription;
 @property (nonatomic, copy) NSDate *pubDate;
-@property (nonatomic, copy) NSString *videoURL;
-@property (nonatomic, copy) NSString *enclosure;
-@property (nonatomic, copy) NSString *ImageURL;
-@property (nonatomic, strong) UIImage *image;
 
 - (instancetype)initWithDictionary: (NSDictionary *)dict;
 

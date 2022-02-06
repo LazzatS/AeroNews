@@ -52,23 +52,12 @@ didStartElement:(NSString *)elementName
     if ([elementName isEqualToString:@"item"]) {
         self.newsItemDict = [NSMutableDictionary new];
         
-    } else if ([elementName isEqual:@"itunes:image"]) {
-        NSMutableString *imageURL = [attributeDict objectForKey:@"href"] == nil
-        ? [NSMutableString new]
-        : [[attributeDict objectForKey:@"href"] mutableCopy];
+    } else if ([elementName isEqualToString:@"title"] ||
+               [elementName isEqualToString:@"link"] ||
+               [elementName isEqualToString:@"description"] ||
+               [elementName isEqualToString:@"pubDate"]) {
         
         self.parsingDict = [NSMutableDictionary new];
-        self.parsingString = imageURL;
-        
-    } else if ([elementName isEqual:@"enclosure"]) {
-        NSMutableString *video_M4V_URL = [attributeDict objectForKey:@"url"] == nil
-        ? [NSMutableString new]
-        : [[attributeDict objectForKey:@"url"] mutableCopy];
-        
-        self.parsingDict = [NSMutableDictionary new];
-        self.parsingString = video_M4V_URL;
-        
-    } else {
         self.parsingString = [NSMutableString new];
     }
 }
@@ -87,7 +76,16 @@ didStartElement:(NSString *)elementName
         self.parsingString = nil;
     }
     
-    if ([elementName isEqualToString:@"item"]) {
+    if ([elementName isEqualToString:@"title"] ||
+        [elementName isEqualToString:@"link"] ||
+        [elementName isEqualToString:@"description"] ||
+        [elementName isEqualToString:@"pubDate"]) {
+        
+        [self.newsItemDict addEntriesFromDictionary:self.parsingDict];
+        self.parsingDict = nil;
+        
+    } else if ([elementName isEqualToString:@"item"]) {
+        
         NewsItemModel *newsItem = [[NewsItemModel alloc] initWithDictionary:self.newsItemDict];
         [self.news addObject:newsItem];
         self.newsItemDict = nil;

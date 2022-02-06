@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithParser:(id<NewsParserProtocol>)parser;
 
 - (void)loadNews:(void(^)(NSArray<NewsItemModel *> *, NSError *))completion;
-- (void)loadImageFromURL:(NSString *)url completion:(void(^)(UIImage *))completion;
-- (void)cancelDownloadingFromURL:(NSString *)url;
 
 @end
 

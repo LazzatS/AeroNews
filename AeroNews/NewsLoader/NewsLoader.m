@@ -41,7 +41,7 @@
 }
 
 - (void)loadNews:(void (^)(NSArray<NewsItemModel *> *, NSError *))completion {
-    NSURL *url = [NSURL URLWithString:@"https://www.jpl.nasa.gov/feeds/podcasts/video"];
+    NSURL *url = [NSURL URLWithString:@"https://www.jpl.nasa.gov/feeds/news"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"GET";
     
@@ -58,14 +58,6 @@
     }];
     
     [dataTask resume];
-}
-
--(void)loadImageFromURL:(NSString *)url completion:(void (^)(UIImage * _Nonnull))completion {
-    // TO DO: load image from url
-}
-
-- (void)cancelDownloadingFromURL:(NSString *)url {
-    // TO DO: cancel loading from url
 }
 
 @end
