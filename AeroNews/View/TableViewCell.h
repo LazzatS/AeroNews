@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)configure:(NewsItemModel *)item;
 - (void)setupTitleLayout:(UILabel *)titleLabel;
+- (void)createDateLabel:(NSString *)date;
+- (void)setupDateLayout:(UILabel *)dateLabel;
 
 @end
 

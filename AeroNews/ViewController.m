@@ -79,4 +79,9 @@ static NSString *reuseIdentifier = @"TableViewCell";
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSURL *url = [NSURL URLWithString:self.dataSource[indexPath.row].link];
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+}
+
 @end
