@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) void (^completion)(NSArray<NewsItemModel *> *, NSError *);
 
+@property (nonatomic, strong) NSXMLParser *parser;
 @property (nonatomic, strong) NSMutableArray *news;
 @property (nonatomic, strong) NSMutableDictionary *newsItemDict;
 @property (nonatomic, strong) NSMutableDictionary *parsingDict;
@@ -24,9 +25,9 @@
 - (void)parseNews:(NSData *)data completion:(void (^)(NSArray<NewsItemModel *> *, NSError *))completion {
     self.completion = completion;
     
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
-    parser.delegate = self;
-    [parser parse];
+    self.parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
+    self.parser.delegate = self;
+    [self.parser parse];
 }
 
 #pragma mark - NSXMLParserDelegate
@@ -40,7 +41,7 @@
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
-    self.news = [NSMutableArray new];
+    self.news = [[NSMutableArray new] autorelease];
 }
 
 - (void)parser:(NSXMLParser *)parser
@@ -50,15 +51,15 @@ didStartElement:(NSString *)elementName
     attributes:(NSDictionary<NSString *,NSString *> *)attributeDict {
     
     if ([elementName isEqualToString:@"item"]) {
-        self.newsItemDict = [NSMutableDictionary new];
+        self.newsItemDict = [[NSMutableDictionary new] autorelease];
         
     } else if ([elementName isEqualToString:@"title"] ||
                [elementName isEqualToString:@"link"] ||
                [elementName isEqualToString:@"description"] ||
                [elementName isEqualToString:@"pubDate"]) {
         
-        self.parsingDict = [NSMutableDictionary new];
-        self.parsingString = [NSMutableString new];
+        self.parsingDict = [[NSMutableDictionary new] autorelease];
+        self.parsingString = [[NSMutableString new] autorelease];
     }
 }
 
@@ -86,7 +87,7 @@ didStartElement:(NSString *)elementName
         
     } else if ([elementName isEqualToString:@"item"]) {
         
-        NewsItemModel *newsItem = [[NewsItemModel alloc] initWithDictionary:self.newsItemDict];
+        NewsItemModel *newsItem = [[[NewsItemModel alloc] initWithDictionary:self.newsItemDict] autorelease];
         [self.news addObject:newsItem];
         self.newsItemDict = nil;
     }
@@ -98,6 +99,11 @@ didStartElement:(NSString *)elementName
     }
     
     [self resetParserState];
+    [self.news autorelease];
+    [self.newsItemDict autorelease];
+    [self.parsingDict autorelease];
+    [self.parsingString autorelease];
+    [self.parser autorelease];
 }
 
 #pragma mark - Private method

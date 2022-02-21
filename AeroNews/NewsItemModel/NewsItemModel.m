@@ -12,10 +12,10 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
     if (self) {
-        _title = dict[@"title"];
-        _link = dict[@"link"];
-        _itemDescription = dict[@"description"];
-        _pubDate = dict[@"pubDate"];
+        _title = [dict[@"title"] copy];
+        _link = [dict[@"link"] copy];
+        _itemDescription = [dict[@"description"] copy];
+        _pubDate = [dict[@"pubDate"] copy];
     }
     
     return self;
