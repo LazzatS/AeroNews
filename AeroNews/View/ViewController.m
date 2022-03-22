@@ -15,11 +15,15 @@ static NSString *reuseIdentifier = @"TableViewCell";
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
+#pragma mark - Dependencies
+@property (nonatomic, weak) NSThread *thread;
+
 #pragma mark - News items
 @property (nonatomic, copy) NSArray<NewsItemModel *> *dataSource;
 
 #pragma mark - UI elements
 @property (nonatomic, weak) UITableView *newsTableView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -29,6 +33,7 @@ static NSString *reuseIdentifier = @"TableViewCell";
     [super viewDidLoad];
     
     [self createNewsTableView];
+    [self createActivityIndicator];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -52,13 +57,36 @@ static NSString *reuseIdentifier = @"TableViewCell";
     [self.view addSubview:self.newsTableView];
 }
 
+- (void)createActivityIndicator {
+    self.activityIndicator = [[[UIActivityIndicatorView alloc]
+                               initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge]
+                              autorelease];
+    [self.newsTableView addSubview:self.activityIndicator];
+    self.activityIndicator.center = self.view.center;
+    self.activityIndicator.hidesWhenStopped = YES;
+}
+
 - (void)startLoading {
-    __weak typeof(self) weakSelf = self;
+    [self.activityIndicator startAnimating];
+    
     NewsViewModel *viewModel = [[NewsViewModel new] autorelease];
-    [viewModel fetchNews:^(NSArray<NewsItemModel *> *news, NSError *error) {
-        weakSelf.dataSource = news;
-        [weakSelf.newsTableView reloadData];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    // run loading on a separate thread
+    self.thread = [[NSThread alloc] initWithBlock:^{
+        [viewModel fetchNews:^(NSArray<NewsItemModel *> *news, NSError *error) {
+            weakSelf.dataSource = news;
+            
+            // reload table view on the main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf.newsTableView reloadData];
+                [self.activityIndicator stopAnimating];
+            });
+        }];
     }];
+    
+    [self.thread start];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
