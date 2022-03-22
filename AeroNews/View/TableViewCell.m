@@ -10,10 +10,6 @@
 
 static CGFloat cellHeight = 150;
 
-@interface TableViewCell ()
-
-@end
-
 @implementation TableViewCell
 
 - (void)configure:(NewsItemModel *)item {
@@ -45,7 +41,7 @@ static CGFloat cellHeight = 150;
     [customContentView.heightAnchor constraintGreaterThanOrEqualToConstant:cellHeight].active = YES;
 }
 
-// MARK: - Title label
+#pragma mark - Title Label
 
 - (void)createTitleLabel:(NSString *)title {
     UILabel *titleLabel = [[[UILabel alloc]
@@ -74,7 +70,7 @@ static CGFloat cellHeight = 150;
     [titleLabel.heightAnchor constraintEqualToConstant:titleLabel.frame.size.height].active = YES;
 }
 
-// MARK: - Date label
+#pragma mark - Date Label
 
 - (void)createDateLabel:(NSString *)date {
     UILabel *dateLabel = [[[UILabel alloc]

@@ -13,9 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TableViewCell : UITableViewCell
 
-- (void)createCustomContentView;
-
+#pragma mark - Public methods
 - (void)configure:(NewsItemModel *)item;
+
+#pragma mark - Private methods
+- (void)createCustomContentView;
 - (void)setupTitleLayout:(UILabel *)titleLabel;
 - (void)createDateLabel:(NSString *)date;
 - (void)setupDateLayout:(UILabel *)dateLabel;

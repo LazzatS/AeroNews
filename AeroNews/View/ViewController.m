@@ -6,19 +6,20 @@
 //
 
 #import "ViewController.h"
-#import "NewsLoader/NewsLoader.h"
-#import "NewsParser/NewsXMLParser.h"
-#import "NewsItemModel/NewsItemModel.h"
 #import "TableViewCell.h"
+
+#import "NewsItemModel.h"
+#import "NewsViewModel.h"
 
 static NSString *reuseIdentifier = @"TableViewCell";
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) UITableView *newsTableView;
-
-@property (nonatomic, strong) NewsLoader *newsLoader;
+#pragma mark - News items
 @property (nonatomic, copy) NSArray<NewsItemModel *> *dataSource;
+
+#pragma mark - UI elements
+@property (nonatomic, weak) UITableView *newsTableView;
 
 @end
 
@@ -27,23 +28,21 @@ static NSString *reuseIdentifier = @"TableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.newsLoader = [[NewsLoader alloc] initWithParser:[NewsXMLParser new]];
-    self.dataSource = [NSArray new];
-    
     [self createNewsTableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     [self startLoading];
 }
 
 - (void)createNewsTableView {
-    self.newsTableView = [[UITableView alloc]
+    self.newsTableView = [[[UITableView alloc]
                            initWithFrame:CGRectMake(0, 0,
                                                     self.view.frame.size.width,
                                                     self.view.frame.size.height)
-                           style:UITableViewStylePlain];
+                           style:UITableViewStylePlain] autorelease];
     
     [self.newsTableView registerClass:TableViewCell.self
                forCellReuseIdentifier: @"TableViewCell"];
@@ -55,14 +54,10 @@ static NSString *reuseIdentifier = @"TableViewCell";
 
 - (void)startLoading {
     __weak typeof(self) weakSelf = self;
-    [self.newsLoader loadNews:^(NSArray<NewsItemModel *> *news, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (error) {
-                } else {
-                    weakSelf.dataSource = news;
-                    [weakSelf.newsTableView reloadData];
-                }
-            });
+    NewsViewModel *viewModel = [[NewsViewModel new] autorelease];
+    [viewModel fetchNews:^(NSArray<NewsItemModel *> *news, NSError *error) {
+        weakSelf.dataSource = news;
+        [weakSelf.newsTableView reloadData];
     }];
 }
 
