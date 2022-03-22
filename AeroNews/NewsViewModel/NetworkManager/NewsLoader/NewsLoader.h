@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NewsLoader : NSObject
 
-- (void)loadNews:(void(^)(NSData*, NSError *))completion;
+- (void)loadNews:(void(^)(NSData*, NSError *))completion from: (NSURL *)url;
 
 @end
 

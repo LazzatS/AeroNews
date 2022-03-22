@@ -10,6 +10,9 @@
 #import "NewsLoader.h"
 #import "NewsXMLParser.h"
 
+#pragma mark - URL
+static NSString *urlString = @"https://www.jpl.nasa.gov/feeds/news";
+
 @implementation NewsViewModel
 
 #pragma mark - Custom initilizer
@@ -24,16 +27,35 @@
 
 #pragma mark - Method to load and parse news
 - (void)fetchNews:(void (^)(NSArray<NewsItemModel *> *, NSError *))completion {
+    
+    NSURL *url = [NSURL URLWithString:urlString];
     NewsLoader *loader = [[NewsLoader new] autorelease];
     NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
-
+    
     [self initWithLoader:loader andParser:parser];
     
-    [loader loadNews:^(NSData *newsData, NSError *error) {
-        [parser parseNews:newsData completion:^(NSArray<NewsItemModel *> *newsItems, NSError *err) {
-            completion(newsItems, nil);
+    [loader loadNews:^(NSData *newsData, NSError *loadError) {
+        
+        if (newsData == nil) {
+            completion(nil, loadError);
+        }
+        
+        [parser parseNews:newsData completion:^(NSArray<NewsItemModel *> *newsItems, NSError *parseError) {
+            completion(newsItems, parseError);
         }];
-    }];
+        
+    } from:url];
+}
+
+- (void)showAlert:(NSString *)title message:(NSString *)message on:(UIViewController *)vc {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [alert addAction:okAction];
+    [vc presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Private getters and setters

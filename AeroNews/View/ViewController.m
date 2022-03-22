@@ -75,13 +75,24 @@ static NSString *reuseIdentifier = @"TableViewCell";
     
     // run loading on a separate thread
     self.thread = [[NSThread alloc] initWithBlock:^{
+        
         [viewModel fetchNews:^(NSArray<NewsItemModel *> *news, NSError *error) {
             weakSelf.dataSource = news;
             
             // reload table view on the main thread
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.newsTableView reloadData];
-                [self.activityIndicator stopAnimating];
+                
+                if (error) {
+                    
+                    [weakSelf.activityIndicator stopAnimating];
+                    [viewModel showAlert:@"Error"
+                                 message:[error localizedDescription]
+                                      on:self];
+                } else {
+                    
+                    [weakSelf.newsTableView reloadData];
+                    [weakSelf.activityIndicator stopAnimating];
+                }
             });
         }];
     }];

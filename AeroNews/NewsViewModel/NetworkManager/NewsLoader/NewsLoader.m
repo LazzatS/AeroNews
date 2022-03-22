@@ -7,19 +7,18 @@
 
 #import "NewsLoader.h"
 
-#pragma mark - URL
-static NSString *urlString = @"https://www.jpl.nasa.gov/feeds/news";
-
 @implementation NewsLoader
 
 #pragma mark - Method to load data from url
-- (void)loadNews:(void (^)(NSData *, NSError *))completion {
-    NSURL *url = [NSURL URLWithString:urlString];
+- (void)loadNews:(void (^)(NSData *, NSError *))completion from: (NSURL *)url {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"GET";
     
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    completion(data, nil);
+    NSError *loadError;
+    NSData *data = [NSData dataWithContentsOfURL:url
+                                         options:0
+                                           error:&loadError];
+    completion(data, loadError);
 }
 
 @end
