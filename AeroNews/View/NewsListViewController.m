@@ -1,11 +1,11 @@
 //
-//  ViewController.m
+//  NewsListViewController.m
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 02.02.2022.
 //
 
-#import "ViewController.h"
+#import "NewsListViewController.h"
 #import "TableViewCell.h"
 
 #import "NewsItemModel.h"
@@ -13,7 +13,7 @@
 
 static NSString *reuseIdentifier = @"TableViewCell";
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NewsListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 #pragma mark - Dependencies
 @property (nonatomic, weak) NSThread *thread;
@@ -27,7 +27,7 @@ static NSString *reuseIdentifier = @"TableViewCell";
 
 @end
 
-@implementation ViewController
+@implementation NewsListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

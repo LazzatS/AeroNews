@@ -29,8 +29,8 @@ static NSString *urlString = @"https://www.jpl.nasa.gov/feeds/news";
 - (void)fetchNews:(void (^)(NSArray<NewsItemModel *> *, NSError *))completion {
     
     NSURL *url = [NSURL URLWithString:urlString];
-    NewsLoader *loader = [[NewsLoader new] autorelease];
-    NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
+    __block NewsLoader *loader = [[NewsLoader new] autorelease];
+    __block NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
     
     [self initWithLoader:loader andParser:parser];
     
@@ -40,9 +40,13 @@ static NSString *urlString = @"https://www.jpl.nasa.gov/feeds/news";
             completion(nil, loadError);
         }
         
+        loader = nil;
+        
         [parser parseNews:newsData completion:^(NSArray<NewsItemModel *> *newsItems, NSError *parseError) {
             completion(newsItems, parseError);
         }];
+        
+        parser = nil;
         
     } from:url];
 }

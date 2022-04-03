@@ -19,8 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Private methods
 - (void)createCustomContentView;
 - (void)setupTitleLayout:(UILabel *)titleLabel;
-- (void)createDateLabel:(NSString *)date;
-- (void)setupDateLayout:(UILabel *)dateLabel;
 
 @end
 

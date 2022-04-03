@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		128C009E27AAA5650097F1C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C009D27AAA5650097F1C4 /* AppDelegate.m */; };
 		128C00A127AAA5650097F1C4 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00A027AAA5650097F1C4 /* SceneDelegate.m */; };
-		128C00A427AAA5650097F1C4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00A327AAA5650097F1C4 /* ViewController.m */; };
+		128C00A427AAA5650097F1C4 /* NewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 128C00A327AAA5650097F1C4 /* NewsListViewController.m */; };
 		128C00A727AAA5650097F1C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 128C00A527AAA5650097F1C4 /* Main.storyboard */; };
 		128C00A927AAA5670097F1C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128C00A827AAA5670097F1C4 /* Assets.xcassets */; };
 		128C00AC27AAA5670097F1C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 128C00AA27AAA5670097F1C4 /* LaunchScreen.storyboard */; };
@@ -47,8 +47,8 @@
 		128C009D27AAA5650097F1C4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		128C009F27AAA5650097F1C4 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		128C00A027AAA5650097F1C4 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		128C00A227AAA5650097F1C4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		128C00A327AAA5650097F1C4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		128C00A227AAA5650097F1C4 /* NewsListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsListViewController.h; sourceTree = "<group>"; };
+		128C00A327AAA5650097F1C4 /* NewsListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsListViewController.m; sourceTree = "<group>"; };
 		128C00A627AAA5650097F1C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		128C00A827AAA5670097F1C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		128C00AB27AAA5670097F1C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -177,8 +177,8 @@
 		1295758B27AEC0710031950D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				128C00A227AAA5650097F1C4 /* ViewController.h */,
-				128C00A327AAA5650097F1C4 /* ViewController.m */,
+				128C00A227AAA5650097F1C4 /* NewsListViewController.h */,
+				128C00A327AAA5650097F1C4 /* NewsListViewController.m */,
 				1295758C27AEC0B50031950D /* TableViewCell.h */,
 				1295758D27AEC0B50031950D /* TableViewCell.m */,
 			);
@@ -349,7 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				128C00A427AAA5650097F1C4 /* ViewController.m in Sources */,
+				128C00A427AAA5650097F1C4 /* NewsListViewController.m in Sources */,
 				128C00D427AAB3040097F1C4 /* NewsItemModel.m in Sources */,
 				128C009E27AAA5650097F1C4 /* AppDelegate.m in Sources */,
 				128C00D827AAC1C00097F1C4 /* NewsLoader.m in Sources */,

@@ -8,14 +8,13 @@
 #import "TableViewCell.h"
 #import "NewsItemModel.h"
 
-static CGFloat cellHeight = 150;
+static CGFloat cellHeight = 100;
 
 @implementation TableViewCell
 
 - (void)configure:(NewsItemModel *)item {
     [self createCustomContentView];
     [self createTitleLabel:item.title];
-    [self createDateLabel:item.pubDate];
 }
 
 #pragma mark - Private methods
@@ -67,36 +66,7 @@ static CGFloat cellHeight = 150;
                                               constant:-10].active = YES;
     [titleLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor
                                          constant:10].active = YES;
-    [titleLabel.heightAnchor constraintEqualToConstant:titleLabel.frame.size.height].active = YES;
-}
-
-#pragma mark - Date Label
-
-- (void)createDateLabel:(NSString *)date {
-    UILabel *dateLabel = [[[UILabel alloc]
-                            initWithFrame:CGRectMake(0, 0,
-                                                     self.contentView.frame.size.width,
-                                                     50)]
-                           autorelease];
-    dateLabel.text = date;
-    dateLabel.numberOfLines = 0;
-    dateLabel.textColor = [UIColor blackColor];
-    dateLabel.font = [UIFont systemFontOfSize:18];
-    
-    [self setupDateLayout:dateLabel];
-}
-
-- (void)setupDateLayout:(UILabel *)dateLabel {
-    [self.contentView addSubview:dateLabel];
-    
-    [dateLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [dateLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor
-                                            constant:10].active = YES;
-    [dateLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
-                                             constant:-10].active = YES;
-    [dateLabel.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor
-                                           constant:-10].active = YES;
-    [dateLabel.heightAnchor constraintEqualToConstant:dateLabel.frame.size.height].active = YES;
+    [titleLabel.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
 }
 
 @end
