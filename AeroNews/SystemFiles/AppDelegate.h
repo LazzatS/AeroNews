@@ -6,9 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsFeedViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic, strong) UIWindow *window;
 
 @end
 

@@ -1,11 +1,11 @@
 //
-//  NewsListViewController.m
+//  NewsFeedViewController.m
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 02.02.2022.
 //
 
-#import "NewsListViewController.h"
+#import "NewsFeedViewController.h"
 #import "TableViewCell.h"
 
 #import "NewsItemModel.h"
@@ -13,7 +13,7 @@
 
 static NSString *reuseIdentifier = @"TableViewCell";
 
-@interface NewsListViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NewsFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 #pragma mark - Dependencies
 @property (nonatomic, weak) NSThread *thread;
@@ -27,7 +27,7 @@ static NSString *reuseIdentifier = @"TableViewCell";
 
 @end
 
-@implementation NewsListViewController
+@implementation NewsFeedViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +42,7 @@ static NSString *reuseIdentifier = @"TableViewCell";
     [self startLoading];
 }
 
+#pragma mark - private UI methods
 - (void)createNewsTableView {
     self.newsTableView = [[[UITableView alloc]
                            initWithFrame:CGRectMake(0, 0,
@@ -55,6 +56,8 @@ static NSString *reuseIdentifier = @"TableViewCell";
     self.newsTableView.delegate = self;
     
     [self.view addSubview:self.newsTableView];
+    
+    self.newsTableView.sectionHeaderTopPadding = 0.0;
 }
 
 - (void)createActivityIndicator {
@@ -66,6 +69,7 @@ static NSString *reuseIdentifier = @"TableViewCell";
     self.activityIndicator.hidesWhenStopped = YES;
 }
 
+#pragma mark - load method
 - (void)startLoading {
     [self.activityIndicator startAnimating];
     
@@ -100,8 +104,21 @@ static NSString *reuseIdentifier = @"TableViewCell";
     [self.thread start];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+#pragma mark - table view delegate methods
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSURL *url = [NSURL URLWithString:self.dataSource[indexPath.row].link];
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+}
+
+
+#pragma mark - table view data source methods
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.dataSource.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -113,9 +130,14 @@ static NSString *reuseIdentifier = @"TableViewCell";
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSURL *url = [NSURL URLWithString:self.dataSource[indexPath.row].link];
-    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 5.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[[UIView alloc] init] autorelease];
+    headerView.backgroundColor = [UIColor systemBackgroundColor];
+    return headerView;
 }
 
 @end

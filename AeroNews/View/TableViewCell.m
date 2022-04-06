@@ -10,6 +10,12 @@
 
 static CGFloat cellHeight = 100;
 
+@interface TableViewCell ()
+
+@property (nonatomic, strong) UIView *customContentView;
+
+@end
+
 @implementation TableViewCell
 
 - (void)configure:(NewsItemModel *)item {
@@ -20,53 +26,48 @@ static CGFloat cellHeight = 100;
 #pragma mark - Private methods
 
 - (void)createCustomContentView {
-    UIView *customContentView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0,
-                                                                          self.contentView.frame.size.width,
-                                                                          cellHeight)]
-                                 autorelease];
+    self.customContentView = [[[UIView alloc] init] autorelease];
     
-    customContentView.layer.cornerRadius = 20;
-    customContentView.layer.borderWidth = 3;
-    customContentView.layer.borderColor = [[UIColor blueColor] CGColor];
-    customContentView.backgroundColor = [UIColor whiteColor];
+    self.customContentView.layer.cornerRadius = 20;
+    self.customContentView.layer.borderWidth = 3;
+    self.customContentView.layer.borderColor = [[UIColor systemBlueColor] CGColor];
+    self.customContentView.backgroundColor = [UIColor systemBackgroundColor];
     
-    [self.contentView addSubview:customContentView];
+    [self.contentView addSubview:_customContentView];
     
-    [customContentView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [customContentView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor].active = YES;
-    [customContentView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor].active = YES;
-    [customContentView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor].active = YES;
-    [customContentView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;
-    [customContentView.heightAnchor constraintGreaterThanOrEqualToConstant:cellHeight].active = YES;
+    [self.customContentView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.customContentView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor
+                                                         constant:15].active = YES;
+    [self.customContentView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
+                                                          constant:-15].active = YES;
+    [self.customContentView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor].active = YES;
+    [self.customContentView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;
+    [self.customContentView.heightAnchor constraintGreaterThanOrEqualToConstant:cellHeight].active = YES;
 }
 
 #pragma mark - Title Label
 
 - (void)createTitleLabel:(NSString *)title {
-    UILabel *titleLabel = [[[UILabel alloc]
-                            initWithFrame:CGRectMake(0, 0,
-                                                     self.contentView.frame.size.width,
-                                                     100)]
-                           autorelease];
+    UILabel *titleLabel = [[[UILabel alloc] init] autorelease];
     titleLabel.text = title;
     titleLabel.numberOfLines = 0;
-    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.textColor = [UIColor labelColor];
     titleLabel.font = [UIFont systemFontOfSize:22];
     
     [self setupTitleLayout:titleLabel];
 }
 
 - (void)setupTitleLayout:(UILabel *)titleLabel {
-    [self.contentView addSubview:titleLabel];
+    [self.customContentView addSubview:titleLabel];
     
     [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor
+    [titleLabel.leadingAnchor constraintEqualToAnchor:self.customContentView.leadingAnchor
                                              constant:10].active = YES;
-    [titleLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor
+    [titleLabel.trailingAnchor constraintEqualToAnchor:self.customContentView.trailingAnchor
                                               constant:-10].active = YES;
-    [titleLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor
+    [titleLabel.topAnchor constraintEqualToAnchor:self.customContentView.topAnchor
                                          constant:10].active = YES;
-    [titleLabel.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
+    [titleLabel.centerYAnchor constraintEqualToAnchor:self.customContentView.centerYAnchor].active = YES;
 }
 
 @end
