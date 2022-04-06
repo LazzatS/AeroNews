@@ -175,14 +175,30 @@
 		1295758B27AEC0710031950D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A524D35D27FE2374004BC5B6 /* NewsFeed */,
+				A524D35827FDB652004BC5B6 /* NewsItem */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A524D35827FDB652004BC5B6 /* NewsItem */ = {
+			isa = PBXGroup;
+			children = (
+				A59A5C9F27FA2F480020C4C1 /* NewsItemDetailsViewController.h */,
+				A59A5CA027FA2F480020C4C1 /* NewsItemDetailsViewController.m */,
+			);
+			path = NewsItem;
+			sourceTree = "<group>";
+		};
+		A524D35D27FE2374004BC5B6 /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
 				128C00A227AAA5650097F1C4 /* NewsFeedViewController.h */,
 				128C00A327AAA5650097F1C4 /* NewsFeedViewController.m */,
 				1295758C27AEC0B50031950D /* TableViewCell.h */,
 				1295758D27AEC0B50031950D /* TableViewCell.m */,
-				A59A5C9F27FA2F480020C4C1 /* NewsItemDetailsViewController.h */,
-				A59A5CA027FA2F480020C4C1 /* NewsItemDetailsViewController.m */,
 			);
-			path = View;
+			path = NewsFeed;
 			sourceTree = "<group>";
 		};
 		A592779D27DDD3B10071D490 /* NetworkManager */ = {

@@ -27,6 +27,7 @@
                                    autorelease];
     nav.navigationBar.backgroundColor = [UIColor systemBackgroundColor];
     
+    self.window.backgroundColor = [UIColor systemBackgroundColor];
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
     

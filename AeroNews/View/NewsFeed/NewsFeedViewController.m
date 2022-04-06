@@ -11,6 +11,8 @@
 #import "NewsItemModel.h"
 #import "NewsViewModel.h"
 
+#import "NewsItemDetailsViewController.h"
+
 static NSString *reuseIdentifier = @"TableViewCell";
 
 @interface NewsFeedViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -108,7 +110,10 @@ static NSString *reuseIdentifier = @"TableViewCell";
 #pragma mark - table view delegate methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSURL *url = [NSURL URLWithString:self.dataSource[indexPath.row].link];
-    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    NewsItemDetailsViewController *newsItemVC = [[NewsItemDetailsViewController new] autorelease];
+    newsItemVC.url = url;
+    [self.navigationController pushViewController:newsItemVC animated:YES];
+//    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
 }
 
 
