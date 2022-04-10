@@ -34,8 +34,15 @@ static NSString *reuseIdentifier = @"TableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Aeronews";
     [self createNewsTableView];
     [self createActivityIndicator];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    self.navigationController.toolbarHidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -58,8 +65,6 @@ static NSString *reuseIdentifier = @"TableViewCell";
     self.newsTableView.delegate = self;
     
     [self.view addSubview:self.newsTableView];
-    
-    self.newsTableView.sectionHeaderTopPadding = 0.0;
 }
 
 - (void)createActivityIndicator {
@@ -113,17 +118,12 @@ static NSString *reuseIdentifier = @"TableViewCell";
     NewsItemDetailsViewController *newsItemVC = [[NewsItemDetailsViewController new] autorelease];
     newsItemVC.url = url;
     [self.navigationController pushViewController:newsItemVC animated:YES];
-//    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
 }
 
 
 #pragma mark - table view data source methods
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.dataSource.count;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -133,16 +133,6 @@ static NSString *reuseIdentifier = @"TableViewCell";
     [cell configure:newsItem];
     
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 5.0;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [[[UIView alloc] init] autorelease];
-    headerView.backgroundColor = [UIColor systemBackgroundColor];
-    return headerView;
 }
 
 @end
