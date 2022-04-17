@@ -6,81 +6,72 @@
 //
 
 #import "NewsViewModel.h"
-#import "NewsItemModel.h"
-#import "NewsLoader.h"
-#import "NewsXMLParser.h"
 
-#pragma mark - URL
-static NSString *urlString = @"https://www.jpl.nasa.gov/feeds/news";
+@interface NewsViewModel ()
+
+@property (nonatomic, strong) NSArray<NewsItemModel *> *news;
+
+@end
 
 @implementation NewsViewModel
 
 #pragma mark - Custom initilizer
-- (void)initWithLoader: (NewsLoader *)loader andParser: (NewsXMLParser *)parser {
+- (instancetype)init {
+    
     self = [super init];
     
     if (self) {
-        loader = loader;
-        parser = parser;
+        self.news = @[];
+        self.fetcher = [[[NewsFetcher alloc]
+                         initWithLoader:[[NewsLoader alloc] init]
+                         andParser:[[NewsXMLParser alloc] init]]
+                        autorelease];
     }
-}
-
-#pragma mark - Method to load and parse news
-- (void)fetchNews:(void (^)(NSArray<NewsItemModel *> *, NSError *))completion {
     
-    NSURL *url = [NSURL URLWithString:urlString];
-    __block NewsLoader *loader = [[NewsLoader new] autorelease];
-    __block NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
+    return self;
+}
+
+#pragma mark - Get news method
+- (void)getNewsWithSuccess: (void (^)(NSArray<NewsItemModel *> *))successCompletion
+                     error: (void (^)(NSError *))errorCompletion
+                   fromURL: (NSURL *)url {
     
-    [self initWithLoader:loader andParser:parser];
+    __weak NewsViewModel *weakSelf = self;
     
-    [loader loadNews:^(NSData *newsData, NSError *loadError) {
-        
-        if (newsData == nil) {
-            completion(nil, loadError);
-        }
-        
-        loader = nil;
-        
-        [parser parseNews:newsData completion:^(NSArray<NewsItemModel *> *newsItems, NSError *parseError) {
-            completion(newsItems, parseError);
-        }];
-        
-        parser = nil;
-        
-    } from:url];
+    self.thread = [[[NSThread alloc] initWithBlock:^{
+        [weakSelf.fetcher fetchNews:^(NSArray<NewsItemModel *> *news, NSError *error) {
+            
+            if (news == nil) {
+                errorCompletion(error);
+            }
+            
+            NSMutableArray *newsItems = [[[NSMutableArray alloc] init] autorelease];
+            
+            for (NewsItemModel *newsItem in news) {
+                [newsItems addObject:newsItem];
+            }
+            
+            [weakSelf setNews:newsItems];
+            successCompletion(newsItems);
+            
+        } fromURL:url];
+    }] autorelease];
+    
+    [self.thread start];
 }
 
-- (void)showAlert:(NSString *)title message:(NSString *)message on:(UIViewController *)vc {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:nil];
-    [alert addAction:okAction];
-    [vc presentViewController:alert animated:YES completion:nil];
+#pragma mark - Get number of items
+- (NSUInteger)numberOfNewsItems {
+    return self.news.count;
 }
 
-#pragma mark - Private getters and setters
-- (NewsLoader *)newsLoader {
-    return newsLoader;
-}
-
-- (void)setNewsLoader:(NewsLoader *)newNewsLoader {
-    [newNewsLoader retain];
-    [newsLoader release];
-    newsLoader = newNewsLoader;
-}
-
-- (NewsXMLParser *)newsXMLParser {
-    return newsXMLParser;
-}
-
-- (void)setNewsXMLParser:(NewsXMLParser *)newNewsXMLParser {
-    [newNewsXMLParser retain];
-    [newsXMLParser release];
-    newsXMLParser = newNewsXMLParser;
+#pragma mark - Get item at indexPath
+- (NewsItemModel *)newsItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row >= self.news.count) {
+        return nil;
+    }
+    
+    return self.news[indexPath.row];
 }
 
 @end

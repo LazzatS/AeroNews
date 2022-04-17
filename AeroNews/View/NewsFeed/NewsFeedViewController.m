@@ -6,22 +6,11 @@
 //
 
 #import "NewsFeedViewController.h"
-#import "TableViewCell.h"
 
-#import "NewsItemModel.h"
-#import "NewsViewModel.h"
-
-#import "NewsItemDetailsViewController.h"
-
-static NSString *reuseIdentifier = @"TableViewCell";
-
-@interface NewsFeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NewsFeedViewController ()
 
 #pragma mark - Dependencies
-@property (nonatomic, weak) NSThread *thread;
-
-#pragma mark - News items
-@property (nonatomic, copy) NSArray<NewsItemModel *> *dataSource;
+@property (nonatomic, strong) id<NewsViewModelProtocol> viewModel;
 
 #pragma mark - UI elements
 @property (nonatomic, weak) UITableView *newsTableView;
@@ -31,10 +20,22 @@ static NSString *reuseIdentifier = @"TableViewCell";
 
 @implementation NewsFeedViewController
 
+- (instancetype)init {
+    
+    self = [super init];
+    
+    if (self) {
+        self.viewModel = [[NewsViewModel alloc] init];
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"Aeronews";
+    
     [self createNewsTableView];
     [self createActivityIndicator];
 }
@@ -48,8 +49,31 @@ static NSString *reuseIdentifier = @"TableViewCell";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self startLoading];
+    [self getData];
 }
+
+- (void)getData {
+    [self.activityIndicator startAnimating];
+    
+    __weak NewsFeedViewController *weakSelf = self;
+    [weakSelf.viewModel getNewsWithSuccess:^(NSArray<NewsItemModel *> *news) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            [NSThread sleepForTimeInterval:5.0f];
+            [weakSelf.activityIndicator stopAnimating];
+            [weakSelf.newsTableView reloadData];
+            
+        });
+        
+    } error:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showAlert:@"Error"
+                    message:[error localizedDescription]
+                         on:self];
+        });
+    } fromURL:[NSURL URLWithString:urlString]];
+}
+
 
 #pragma mark - private UI methods
 - (void)createNewsTableView {
@@ -76,46 +100,22 @@ static NSString *reuseIdentifier = @"TableViewCell";
     self.activityIndicator.hidesWhenStopped = YES;
 }
 
-#pragma mark - load method
-- (void)startLoading {
-    [self.activityIndicator startAnimating];
-    
-    NewsViewModel *viewModel = [[NewsViewModel new] autorelease];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    // run loading on a separate thread
-    self.thread = [[NSThread alloc] initWithBlock:^{
-        
-        [viewModel fetchNews:^(NSArray<NewsItemModel *> *news, NSError *error) {
-            weakSelf.dataSource = news;
-            
-            // reload table view on the main thread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                if (error) {
-                    
-                    [weakSelf.activityIndicator stopAnimating];
-                    [viewModel showAlert:@"Error"
-                                 message:[error localizedDescription]
-                                      on:self];
-                } else {
-                    
-                    [weakSelf.newsTableView reloadData];
-                    [weakSelf.activityIndicator stopAnimating];
-                }
-            });
-        }];
-    }];
-    
-    [self.thread start];
+- (void)showAlert:(NSString *)title message:(NSString *)message on:(UIViewController *)vc {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil];
+    [alert addAction:okAction];
+    [vc presentViewController:alert animated:YES completion:nil];
 }
 
 
 #pragma mark - table view delegate methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSURL *url = [NSURL URLWithString:self.dataSource[indexPath.row].link];
     NewsItemDetailsViewController *newsItemVC = [[NewsItemDetailsViewController new] autorelease];
+    NSURL *url = [NSURL URLWithString:[self.viewModel newsItemAtIndexPath:indexPath].link];
     newsItemVC.url = url;
     [self.navigationController pushViewController:newsItemVC animated:YES];
 }
@@ -123,13 +123,13 @@ static NSString *reuseIdentifier = @"TableViewCell";
 
 #pragma mark - table view data source methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.count;
+    return self.viewModel.numberOfNewsItems;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier
                                                           forIndexPath:indexPath];
-    NewsItemModel *newsItem = self.dataSource[indexPath.row];
+    NewsItemModel *newsItem = [self.viewModel newsItemAtIndexPath:indexPath];
     [cell configure:newsItem];
     
     return cell;

@@ -6,6 +6,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "MockData.h"
+#import "NewsLoader.h"
+#import "NewsXMLParser.h"
+#import "NewsFetcher.h"
+#import "NewsViewModel.h"
 
 @interface AeroNewsTests : XCTestCase
 
@@ -14,23 +19,110 @@
 @implementation AeroNewsTests
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    NSLog(@"------- Start Test -------");
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    NSLog(@"------- Finish Test -------");
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testLoaderDataIsNotNil {
+    // given
+    MockData *mockData = [[MockData new] autorelease];
+    NewsLoader *loader = [[NewsLoader new] autorelease];
+    
+    // when
+    [loader loadNews:^(NSData *mockData, NSError *mockError) {
+        
+        // then
+        XCTAssertNotNil(mockData);
+        XCTAssertNil(mockError);
+        
+    } from:[mockData getMockFileURL]];
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+- (void)testParserDataIsNotNil {
+    // given
+    MockData *mockData = [[MockData new] autorelease];
+    NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
+    
+    // when
+    [parser parseNews:[mockData getMockData]
+           completion:^(NSArray<NewsItemModel *> *data,
+                        NSError *error) {
+        
+        // then
+        XCTAssertNotNil(data);
+        XCTAssertNil(error);
     }];
+}
+
+- (void)testSizeOfLoadedBytesEqualToSizeOfParsedBytes {
+    // given
+    MockData *mockData = [[MockData new] autorelease];
+    __block NSUInteger expectedSizeOfItems;
+    NewsLoader *loader = [[NewsLoader new] autorelease];
+    NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
+    
+    // when
+    [loader loadNews:^(NSData *data, NSError *error) {
+        expectedSizeOfItems = sizeof(data);
+    } from:[mockData getMockFileURL]];
+    
+    [parser parseNews:[mockData getMockData]
+           completion:^(NSArray<NewsItemModel *> *array,
+                        NSError *error) {
+        
+        // then
+        XCTAssertEqual(expectedSizeOfItems, sizeof(array));
+        
+    }];
+}
+
+- (void)testNumberOfFetchedItems {
+    // given
+    MockData *mockData = [[MockData new] autorelease];
+    NewsLoader *loader = [[NewsLoader new] autorelease];
+    NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
+    NewsFetcher *newsFetcher = [[[NewsFetcher alloc]
+                                 initWithLoader:loader
+                                 andParser:parser]
+                                autorelease];
+    NSUInteger expectedNumberOfItems = [mockData getNumberOfItems];
+    
+    // when
+    [newsFetcher fetchNews:^(NSArray<NewsItemModel *> *array, NSError *error) {
+        
+        // then
+        XCTAssertEqual(expectedNumberOfItems, array.count);
+        
+    } fromURL:[mockData getMockFileURL]];
+}
+
+- (void)testViewModel {
+    // given
+    MockData *mockData = [[MockData new] autorelease];
+    NewsViewModel *viewModel = [[NewsViewModel new] autorelease];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"complete"];
+    
+    // when
+    [viewModel getNewsWithSuccess:^(NSArray<NewsItemModel *> *array) {
+        
+        // either then
+        XCTAssertEqual([mockData getNumberOfItems], array.count);
+        XCTAssertEqual([viewModel numberOfNewsItems], array.count);
+        XCTAssertEqual([viewModel newsItemAtIndexPath:0], array.firstObject);
+        [expectation fulfill];
+        
+    } error:^(NSError *error) {
+        
+        // or then
+        XCTAssertNotNil(error);
+        [expectation fulfill];
+        
+    } fromURL:[mockData getMockFileURL]];
+    
+    [self waitForExpectations:@[expectation] timeout:15];
 }
 
 @end

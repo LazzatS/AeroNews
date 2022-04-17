@@ -6,7 +6,6 @@
 //
 
 #import "NewsXMLParser.h"
-#import "NewsItemModel.h"
 
 @interface NewsXMLParser () <NSXMLParserDelegate>
 
@@ -22,6 +21,7 @@
 
 @implementation NewsXMLParser
 
+#pragma mark - Method to parse data into array
 - (void)parseNews:(NSData *)data completion:(void (^)(NSArray<NewsItemModel *> *, NSError *))completion {
     self.completion = completion;
     
@@ -30,7 +30,7 @@
     [self.parser parse];
 }
 
-#pragma mark - NSXMLParserDelegate
+#pragma mark - NSXMLParserDelegate methods
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
     if (self.completion) {
@@ -107,7 +107,6 @@ didStartElement:(NSString *)elementName
 }
 
 #pragma mark - Private method
-
 - (void)resetParserState {
     self.completion = nil;
     self.news = nil;

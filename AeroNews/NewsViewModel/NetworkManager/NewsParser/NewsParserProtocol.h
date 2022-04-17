@@ -6,11 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class NewsItemModel;
+#import "NewsItemModel.h"
 
 @protocol NewsParserProtocol <NSObject>
 
-- (void)parseNews:(NSData *)data completion:(void(^)(NSArray<NewsItemModel *> *, NSError *))completion;
+- (void)parseNews:(NSData *)data
+       completion:(void(^)(NSArray<NewsItemModel *> *, NSError *))completion;
 
 @end

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <item>
+            <title>Mock Title 1</title>
+            <link>http://example.com/</link>
+            <description>Mock Desctiption 1</description>
+            <pubDate>Thu, 14 Apr 2022 00:00:00 -0700</pubDate>
+        </item>
+        <item>
+            <title>Mock Title 2</title>
+            <link>http://example.com/</link>
+            <description>Mock Desctiption 2</description>
+            <pubDate>Thu, 14 Apr 2022 00:00:00 -0700</pubDate>
+        </item>
+        <item>
+            <title>Mock Title 3</title>
+            <link>http://example.com/</link>
+            <description>Mock Desctiption 3</description>
+            <pubDate>Thu, 14 Apr 2022 00:00:00 -0700</pubDate>
+        </item>
+        <item>
+            <title>Mock Title 4</title>
+            <link>http://example.com/</link>
+            <description>Mock Desctiption 4</description>
+            <pubDate>Thu, 14 Apr 2022 00:00:00 -0700</pubDate>
+        </item>
+    </channel>
+</rss>

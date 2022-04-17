@@ -18,7 +18,12 @@
     NSData *data = [NSData dataWithContentsOfURL:url
                                          options:0
                                            error:&loadError];
-    completion(data, loadError);
+    if (data == nil) {
+        completion(nil, loadError);
+    } else {
+        completion(data, nil);
+    }
+    
 }
 
 @end
