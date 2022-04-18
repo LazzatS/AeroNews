@@ -20,10 +20,10 @@
                     initWithFrame:[[UIScreen mainScreen] bounds]]
                    autorelease];
     
-    NewsFeedViewController *newsListVC = [[NewsFeedViewController new] autorelease];
+    NewsFeedViewController *newsFeedVC = [[NewsFeedViewController new] autorelease];
     
     UINavigationController *nav = [[[UINavigationController alloc]
-                                    initWithRootViewController:newsListVC]
+                                    initWithRootViewController:newsFeedVC]
                                    autorelease];
     nav.navigationBar.backgroundColor = [UIColor systemBackgroundColor];
     

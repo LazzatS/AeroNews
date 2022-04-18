@@ -6,8 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import "NewsItemModel.h"
 
 @class NewsItemModel;
 
@@ -19,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Private methods
 - (void)createCustomContentView;
 - (void)setupTitleLayout:(UILabel *)titleLabel;
+- (void)createInfoIcon;
+- (void)setupInfoIconLayout: (UIButton *)infoButton;
 
 @end
-
-NS_ASSUME_NONNULL_END

@@ -6,13 +6,11 @@
 //
 
 #import "TableViewCell.h"
-#import "NewsItemModel.h"
-
-static CGFloat cellHeight = 100;
 
 @interface TableViewCell ()
 
 @property (nonatomic, strong) UIView *customContentView;
+@property (nonatomic, strong) UIButton *infoButton;
 
 @end
 
@@ -20,6 +18,7 @@ static CGFloat cellHeight = 100;
 
 - (void)configure:(NewsItemModel *)item {
     [self createCustomContentView];
+    [self createInfoIcon];
     [self createTitleLabel:item.title];
 }
 
@@ -28,8 +27,8 @@ static CGFloat cellHeight = 100;
 - (void)createCustomContentView {
     self.customContentView = [[[UIView alloc] init] autorelease];
     
-    self.customContentView.layer.cornerRadius = 20;
-    self.customContentView.layer.borderWidth = 3;
+    self.customContentView.layer.cornerRadius = 10;
+    self.customContentView.layer.borderWidth = 1;
     self.customContentView.layer.borderColor = [[UIColor systemBlueColor] CGColor];
     self.customContentView.backgroundColor = [UIColor systemBackgroundColor];
     
@@ -42,8 +41,32 @@ static CGFloat cellHeight = 100;
                                                           constant:-15].active = YES;
     [self.customContentView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor].active = YES;
     [self.customContentView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;
-    [self.customContentView.heightAnchor constraintGreaterThanOrEqualToConstant:cellHeight].active = YES;
 }
+
+#pragma mark - Info icon
+
+- (void)createInfoIcon {
+    self.infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    self.infoButton.tintColor = [UIColor systemBlueColor];
+    
+    [self.infoButton addTarget:self
+                        action:@selector(didTapInfoButton)
+              forControlEvents:UIControlEventTouchUpInside];
+    
+    [self setupInfoIconLayout:self.infoButton];
+}
+
+- (void)setupInfoIconLayout: (UIButton *)infoButton {
+    [self.customContentView addSubview:infoButton];
+    
+    [infoButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [infoButton.trailingAnchor constraintEqualToAnchor:self.customContentView.trailingAnchor
+                                              constant:-10].active = YES;
+    [infoButton.centerYAnchor constraintEqualToAnchor:self.customContentView.centerYAnchor].active = YES;
+    [infoButton.widthAnchor constraintEqualToConstant:20].active = YES;
+    [infoButton.heightAnchor constraintEqualToConstant:20].active = YES;
+}
+
 
 #pragma mark - Title Label
 
@@ -52,7 +75,7 @@ static CGFloat cellHeight = 100;
     titleLabel.text = title;
     titleLabel.numberOfLines = 0;
     titleLabel.textColor = [UIColor labelColor];
-    titleLabel.font = [UIFont systemFontOfSize:22];
+    titleLabel.font = [UIFont systemFontOfSize:18];
     
     [self setupTitleLayout:titleLabel];
 }
@@ -63,11 +86,15 @@ static CGFloat cellHeight = 100;
     [titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [titleLabel.leadingAnchor constraintEqualToAnchor:self.customContentView.leadingAnchor
                                              constant:10].active = YES;
-    [titleLabel.trailingAnchor constraintEqualToAnchor:self.customContentView.trailingAnchor
+    [titleLabel.trailingAnchor constraintEqualToAnchor:self.infoButton.leadingAnchor
                                               constant:-10].active = YES;
     [titleLabel.topAnchor constraintEqualToAnchor:self.customContentView.topAnchor
                                          constant:10].active = YES;
     [titleLabel.centerYAnchor constraintEqualToAnchor:self.customContentView.centerYAnchor].active = YES;
+}
+
+- (void)didTapInfoButton {
+    NSLog(@"tapped info button");
 }
 
 @end

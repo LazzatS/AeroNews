@@ -23,8 +23,8 @@
     if (self) {
         self.news = @[];
         self.fetcher = [[[NewsFetcher alloc]
-                         initWithLoader:[[NewsLoader alloc] init]
-                         andParser:[[NewsXMLParser alloc] init]]
+                         initWithLoader:[[[NewsLoader alloc] init] autorelease]
+                         andParser:[[[NewsXMLParser alloc] init] autorelease]]
                         autorelease];
     }
     

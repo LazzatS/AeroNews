@@ -25,7 +25,7 @@
     self = [super init];
     
     if (self) {
-        self.viewModel = [[NewsViewModel alloc] init];
+        self.viewModel = [[[NewsViewModel alloc] init] autorelease];
     }
     
     return self;
@@ -48,7 +48,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+    NSLog(@"thread viewDidAppear: %@", [NSThread currentThread]);
     [self getData];
 }
 
@@ -56,7 +56,7 @@
     [self.activityIndicator startAnimating];
     
     __weak NewsFeedViewController *weakSelf = self;
-    [weakSelf.viewModel getNewsWithSuccess:^(NSArray<NewsItemModel *> *news) {
+    [self.viewModel getNewsWithSuccess:^(NSArray<NewsItemModel *> *news) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
 //            [NSThread sleepForTimeInterval:5.0f];
@@ -133,6 +133,10 @@
     [cell configure:newsItem];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
 }
 
 @end
