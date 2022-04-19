@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 #import "TableViewCell.h"
 #import "NewsItemModel.h"
 #import "NewsViewModel.h"
@@ -15,9 +16,6 @@
 @interface NewsFeedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
-
-#pragma mark - URL
-static NSString *urlString = @"https://www.jpl.nasa.gov/feeds/news";
 
 #pragma mark - Table View Cell identifier
 static NSString *reuseIdentifier = @"TableViewCell";

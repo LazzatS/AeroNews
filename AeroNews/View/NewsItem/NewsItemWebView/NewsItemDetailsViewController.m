@@ -7,10 +7,6 @@
 
 #import "NewsItemDetailsViewController.h"
 
-CGFloat navBarHeight = 64;
-CGFloat toolBarHeight = 64;
-CGFloat progressViewHeight = 10;
-
 @interface NewsItemDetailsViewController ()
 
 @property (nonatomic, strong) WKWebView *webView;
