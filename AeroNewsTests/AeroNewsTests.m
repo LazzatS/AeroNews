@@ -29,7 +29,7 @@
 - (void)testLoaderDataIsNotNil {
     // given
     MockData *mockData = [[MockData new] autorelease];
-    NewsLoader *loader = [[NewsLoader new] autorelease];
+    Loader *loader = [[Loader new] autorelease];
     
     // when
     [loader loadNews:^(NSData *mockData, NSError *mockError) {
@@ -61,7 +61,7 @@
     // given
     MockData *mockData = [[MockData new] autorelease];
     __block NSUInteger expectedSizeOfItems;
-    NewsLoader *loader = [[NewsLoader new] autorelease];
+    Loader *loader = [[Loader new] autorelease];
     NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
     
     // when
@@ -82,7 +82,7 @@
 - (void)testNumberOfFetchedItems {
     // given
     MockData *mockData = [[MockData new] autorelease];
-    NewsLoader *loader = [[NewsLoader new] autorelease];
+    Loader *loader = [[Loader new] autorelease];
     NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
     NewsFetcher *newsFetcher = [[[NewsFetcher alloc]
                                  initWithLoader:loader
@@ -106,7 +106,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"complete"];
     
     // when
-    [viewModel getNewsWithSuccess:^(NSArray<NewsItemModel *> *array) {
+    [viewModel getNewsWithSuccess:^(NSArray<ItemModel *> *array) {
         
         // either then
         XCTAssertEqual([mockData getNumberOfItems], array.count);

@@ -1,5 +1,5 @@
 //
-//  NewsItemModel.h
+//  ItemModel.h
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 02.02.2022.
@@ -8,9 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface NewsItemModel : NSObject
+@interface ItemModel : NSObject
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *link;
@@ -20,5 +18,3 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithDictionary: (NSDictionary *)dict;
 
 @end
-
-NS_ASSUME_NONNULL_END

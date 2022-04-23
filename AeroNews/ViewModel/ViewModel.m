@@ -1,19 +1,19 @@
 //
-//  NewsViewModel.m
+//  ViewModel.m
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 13.03.2022.
 //
 
-#import "NewsViewModel.h"
+#import "ViewModel.h"
 
-@interface NewsViewModel ()
+@interface ViewModel ()
 
-@property (nonatomic, strong) NSArray<NewsItemModel *> *news;
+@property (nonatomic, strong) NSArray<ItemModel *> *news;
 
 @end
 
-@implementation NewsViewModel
+@implementation ViewModel
 
 #pragma mark - Custom initilizer
 - (instancetype)init {
@@ -22,9 +22,9 @@
     
     if (self) {
         self.news = @[];
-        self.fetcher = [[[NewsFetcher alloc]
-                         initWithLoader:[[[NewsLoader alloc] init] autorelease]
-                         andParser:[[[NewsXMLParser alloc] init] autorelease]]
+        self.fetcher = [[[NetworkLayer alloc]
+                         initWithLoader:[[[Loader alloc] init] autorelease]     // no
+                         andParser:[[[XMLParser alloc] init] autorelease]]
                         autorelease];
     }
     
@@ -32,14 +32,14 @@
 }
 
 #pragma mark - Get news method
-- (void)getNewsWithSuccess: (void (^)(NSArray<NewsItemModel *> *))successCompletion
+- (void)getNewsWithSuccess: (void (^)(NSArray<ItemModel *> *))successCompletion
                      error: (void (^)(NSError *))errorCompletion
                    fromURL: (NSURL *)url {
     
-    __weak NewsViewModel *weakSelf = self;
+    __weak ViewModel *weakSelf = self;
     
-    self.thread = [[[NSThread alloc] initWithBlock:^{
-        [weakSelf.fetcher fetchNews:^(NSArray<NewsItemModel *> *news, NSError *error) {
+    self.thread = [[[NSThread alloc] initWithBlock:^{                                           // to loader
+        [weakSelf.fetcher fetchNews:^(NSArray<ItemModel *> *news, NSError *error) {
             
             if (news == nil) {
                 errorCompletion(error);
@@ -47,7 +47,7 @@
             
             NSMutableArray *newsItems = [[[NSMutableArray alloc] init] autorelease];
             
-            for (NewsItemModel *newsItem in news) {
+            for (ItemModel *newsItem in news) {
                 [newsItems addObject:newsItem];
             }
             
@@ -66,7 +66,7 @@
 }
 
 #pragma mark - Get item at indexPath
-- (NewsItemModel *)newsItemAtIndexPath:(NSIndexPath *)indexPath {
+- (ItemModel *)newsItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row >= self.news.count) {
         return nil;
     }

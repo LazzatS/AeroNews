@@ -9,13 +9,13 @@
 
 @interface NewsItemDescriptionViewController ()
 
-@property (nonatomic, strong) NewsItemModel *item;
+@property (nonatomic, strong) ItemModel *item;
 
 @end
 
 @implementation NewsItemDescriptionViewController
 
-- (instancetype)initWithNewsItem: (NewsItemModel *)newsItem {
+- (instancetype)initWithNewsItem: (ItemModel *)newsItem {
     
     self = [super init];
     

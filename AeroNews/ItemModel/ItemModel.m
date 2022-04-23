@@ -1,13 +1,13 @@
 //
-//  NewsItemModel.m
+//  ItemModel.m
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 02.02.2022.
 //
 
-#import "NewsItemModel.h"
+#import "ItemModel.h"
 
-@implementation NewsItemModel
+@implementation ItemModel
 
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     self = [super init];

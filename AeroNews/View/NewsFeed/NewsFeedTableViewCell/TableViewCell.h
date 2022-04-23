@@ -6,14 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewsItemModel.h"
+#import "ItemModel.h"
 
-@class NewsItemModel;
+@class ItemModel;
 
 @interface TableViewCell : UITableViewCell
 
 #pragma mark - Public methods
-- (void)configure:(NewsItemModel *)item;
+- (void)configure:(ItemModel *)item;
 
 #pragma mark - Private methods
 - (void)createCustomContentView;

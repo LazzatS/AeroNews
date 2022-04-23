@@ -1,15 +1,15 @@
 //
-//  NewsXMLParser.m
+//  XMLParser.m
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 02.02.2022.
 //
 
-#import "NewsXMLParser.h"
+#import "XMLParser.h"
 
-@interface NewsXMLParser () <NSXMLParserDelegate>
+@interface XMLParser () <NSXMLParserDelegate>
 
-@property (nonatomic, strong) void (^completion)(NSArray<NewsItemModel *> *, NSError *);
+@property (nonatomic, strong) void (^completion)(NSArray<ItemModel *> *, NSError *);
 
 @property (nonatomic, strong) NSXMLParser *parser;
 @property (nonatomic, strong) NSMutableArray *news;
@@ -19,10 +19,10 @@
 
 @end
 
-@implementation NewsXMLParser
+@implementation XMLParser
 
 #pragma mark - Method to parse data into array
-- (void)parseNews:(NSData *)data completion:(void (^)(NSArray<NewsItemModel *> *, NSError *))completion {
+- (void)parseNews:(NSData *)data completion:(void (^)(NSArray<ItemModel *> *, NSError *))completion {
     self.completion = completion;
     
     self.parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
@@ -87,7 +87,7 @@ didStartElement:(NSString *)elementName
         
     } else if ([elementName isEqualToString:@"item"]) {
         
-        NewsItemModel *newsItem = [[[NewsItemModel alloc] initWithDictionary:self.newsItemDict] autorelease];
+        ItemModel *newsItem = [[[ItemModel alloc] initWithDictionary:self.newsItemDict] autorelease];
         [self.news addObject:newsItem];
         self.newsItemDict = nil;
     }
@@ -99,11 +99,6 @@ didStartElement:(NSString *)elementName
     }
     
     [self resetParserState];
-    [self.news autorelease];
-    [self.newsItemDict autorelease];
-    [self.parsingDict autorelease];
-    [self.parsingString autorelease];
-    [self.parser autorelease];
 }
 
 #pragma mark - Private method

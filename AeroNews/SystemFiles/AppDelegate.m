@@ -16,10 +16,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window = [[[UIWindow alloc]
-                    initWithFrame:[[UIScreen mainScreen] bounds]]
-                   autorelease];
-    
     NewsFeedViewController *newsFeedVC = [[NewsFeedViewController new] autorelease];
     
     UINavigationController *nav = [[[UINavigationController alloc]
@@ -27,6 +23,10 @@
                                    autorelease];
     nav.navigationBar.backgroundColor = [UIColor systemBackgroundColor];
     
+    
+    self.window = [[[UIWindow alloc]
+                    initWithFrame:[[UIScreen mainScreen] bounds]]
+                   autorelease];
     self.window.backgroundColor = [UIColor systemBackgroundColor];
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];

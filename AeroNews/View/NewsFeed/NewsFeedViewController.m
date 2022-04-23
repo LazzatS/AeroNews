@@ -10,7 +10,7 @@
 @interface NewsFeedViewController ()
 
 #pragma mark - Dependencies
-@property (nonatomic, strong) id<NewsViewModelProtocol> viewModel;
+@property (nonatomic, strong) id<ViewModelProtocol> viewModel;
 
 #pragma mark - UI elements
 @property (nonatomic, weak) UITableView *newsTableView;
@@ -25,7 +25,7 @@
     self = [super init];
     
     if (self) {
-        self.viewModel = [[[NewsViewModel alloc] init] autorelease];
+        self.viewModel = [[[ViewModel alloc] init] autorelease];
     }
     
     return self;
@@ -48,7 +48,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"thread viewDidAppear: %@", [NSThread currentThread]);
     [self getData];
 }
 
@@ -56,21 +55,21 @@
     [self.activityIndicator startAnimating];
     
     __weak NewsFeedViewController *weakSelf = self;
-    [self.viewModel getNewsWithSuccess:^(NSArray<NewsItemModel *> *news) {
+    [self.viewModel getNewsWithSuccess:^(NSArray<ItemModel *> *news) {
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
 //            [NSThread sleepForTimeInterval:5.0f];
             [weakSelf.activityIndicator stopAnimating];
             [weakSelf.newsTableView reloadData];
             
-        });
+//        });
         
     } error:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
             [self showAlert:@"Error"
                     message:[error localizedDescription]
                          on:self];
-        });
+//        });
     } fromURL:[NSURL URLWithString:urlString]];
 }
 
@@ -129,7 +128,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier
                                                           forIndexPath:indexPath];
-    NewsItemModel *newsItem = [self.viewModel newsItemAtIndexPath:indexPath];
+    ItemModel *newsItem = [self.viewModel newsItemAtIndexPath:indexPath];
     [cell configure:newsItem];
     
     return cell;
@@ -137,6 +136,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewAutomaticDimension;
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc");
+    self.viewModel = nil;
+    [super dealloc];
 }
 
 @end

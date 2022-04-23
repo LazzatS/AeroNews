@@ -8,9 +8,9 @@
 #import <UIKit/UIKit.h>
 #import "Constants.h"
 #import "TableViewCell.h"
-#import "NewsItemModel.h"
-#import "NewsViewModel.h"
-#import "NewsViewModelProtocol.h"
+#import "ItemModel.h"
+#import "ViewModel.h"
+#import "ViewModelProtocol.h"
 #import "NewsItemDetailsViewController.h"
 
 @interface NewsFeedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>

@@ -16,7 +16,7 @@
 
 @implementation TableViewCell
 
-- (void)configure:(NewsItemModel *)item {
+- (void)configure:(ItemModel *)item {
     [self createCustomContentView];
     [self createInfoIcon];
     [self createTitleLabel:item.title];

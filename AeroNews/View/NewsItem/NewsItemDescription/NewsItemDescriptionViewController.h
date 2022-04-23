@@ -6,11 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewsItemModel.h"
+#import "ItemModel.h"
 #import "Constants.h"
 
 @interface NewsItemDescriptionViewController : UIViewController
 
-- (instancetype)initWithNewsItem: (NewsItemModel *)newsItem;
+- (instancetype)initWithNewsItem: (ItemModel *)newsItem;
 
 @end
