@@ -22,7 +22,10 @@
 @implementation XMLParser
 
 #pragma mark - Method to parse data into array
-- (void)parseNews:(NSData *)data completion:(void (^)(NSArray<ItemModel *> *, NSError *))completion {
+- (void)parseNews:(NSData *)data
+       completion:(void (^)(NSArray<ItemModel *> *,
+                            NSError *))completion {
+    
     self.completion = completion;
     
     self.parser = [[[NSXMLParser alloc] initWithData:data] autorelease];

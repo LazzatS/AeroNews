@@ -6,7 +6,6 @@
 //
 
 #import "Loader.h"
-#import "ParserProtocol.h"
 
 @implementation Loader
 
@@ -16,19 +15,15 @@
              completion:(void (^)(NSData *,
                                   NSError *))completion {
     
-    NSThread *thread = [[NSThread alloc] initWithBlock:^{
-        NSError *loadError;
-        NSData *data = [NSData dataWithContentsOfURL:url
-                                             options:0
-                                               error:&loadError];
-        if (data == nil) {
-            completion(nil, loadError);
-        } else {
-            completion(data, nil);
-        }
-    }];
-    
-    [thread start];
+    NSError *loadError;
+    NSData *data = [NSData dataWithContentsOfURL:url
+                                         options:0
+                                           error:&loadError];
+    if (data == nil) {
+        completion(nil, loadError);
+    } else {
+        completion(data, nil);
+    }
 }
 
 @end

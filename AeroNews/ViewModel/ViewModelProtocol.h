@@ -10,9 +10,15 @@
 
 @protocol ViewModelProtocol <NSObject>
 
-- (void)getNewsWithSuccess: (void (^)(NSArray<ItemModel *> *))successCompletion
-                     error: (void (^)(NSError *))errorCompletion
-                   fromURL: (NSURL *)url;
+#pragma mark - class method
++ (id<ViewModelProtocol>)newAlloc;
+
+#pragma mark - table view data source methods
+- (void)getNewsFromURL: (NSURL *)url
+               success: (void (^)(NSArray<ItemModel *> *))successCompletion
+                 error: (void (^)(NSError *))errorCompletion;
+
+#pragma mark - table view delegate methods
 - (NSUInteger)numberOfNewsItems;
 - (ItemModel *)newsItemAtIndexPath: (NSIndexPath *)indexPath;
 

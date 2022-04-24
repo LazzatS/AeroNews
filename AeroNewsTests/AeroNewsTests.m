@@ -7,10 +7,10 @@
 
 #import <XCTest/XCTest.h>
 #import "MockData.h"
-#import "NewsLoader.h"
-#import "NewsXMLParser.h"
-#import "NewsFetcher.h"
-#import "NewsViewModel.h"
+#import "Loader.h"
+#import "XMLParser.h"
+#import "NetworkLayer.h"
+#import "ViewModel.h"
 
 @interface AeroNewsTests : XCTestCase
 
@@ -32,23 +32,22 @@
     Loader *loader = [[Loader new] autorelease];
     
     // when
-    [loader loadNews:^(NSData *mockData, NSError *mockError) {
-        
+    [loader loadNewsFromURL:[mockData getMockFileURL]
+                 completion:^(NSData *mockData, NSError *mockError) {
         // then
         XCTAssertNotNil(mockData);
         XCTAssertNil(mockError);
-        
-    } from:[mockData getMockFileURL]];
+    }];
 }
 
 - (void)testParserDataIsNotNil {
     // given
     MockData *mockData = [[MockData new] autorelease];
-    NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
+    XMLParser *parser = [[XMLParser new] autorelease];
     
     // when
     [parser parseNews:[mockData getMockData]
-           completion:^(NSArray<NewsItemModel *> *data,
+           completion:^(NSArray<ItemModel *> *data,
                         NSError *error) {
         
         // then
@@ -62,15 +61,16 @@
     MockData *mockData = [[MockData new] autorelease];
     __block NSUInteger expectedSizeOfItems;
     Loader *loader = [[Loader new] autorelease];
-    NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
+    XMLParser *parser = [[XMLParser new] autorelease];
     
     // when
-    [loader loadNews:^(NSData *data, NSError *error) {
+    [loader loadNewsFromURL:[mockData getMockFileURL]
+                 completion:^(NSData *data, NSError *error) {
         expectedSizeOfItems = sizeof(data);
-    } from:[mockData getMockFileURL]];
+    }];
     
     [parser parseNews:[mockData getMockData]
-           completion:^(NSArray<NewsItemModel *> *array,
+           completion:^(NSArray<ItemModel *> *array,
                         NSError *error) {
         
         // then
@@ -83,30 +83,36 @@
     // given
     MockData *mockData = [[MockData new] autorelease];
     Loader *loader = [[Loader new] autorelease];
-    NewsXMLParser *parser = [[NewsXMLParser new] autorelease];
-    NewsFetcher *newsFetcher = [[[NewsFetcher alloc]
-                                 initWithLoader:loader
-                                 andParser:parser]
-                                autorelease];
+    XMLParser *parser = [[XMLParser new] autorelease];
+    NetworkLayer *networkLayer = [[[NetworkLayer alloc]
+                                   initWithLoader:loader
+                                   andParser:parser]
+                                  autorelease];
     NSUInteger expectedNumberOfItems = [mockData getNumberOfItems];
     
     // when
-    [newsFetcher fetchNews:^(NSArray<NewsItemModel *> *array, NSError *error) {
+    [networkLayer fetchNewsFromURL:[mockData getMockFileURL]
+                       withSuccess:^(NSArray<ItemModel *> *array) {
         
         // then
         XCTAssertEqual(expectedNumberOfItems, array.count);
         
-    } fromURL:[mockData getMockFileURL]];
+    } withError:^(NSError *error) {
+        
+        // then
+        XCTAssertNil(error);
+    }];
 }
 
 - (void)testViewModel {
     // given
     MockData *mockData = [[MockData new] autorelease];
-    NewsViewModel *viewModel = [[NewsViewModel new] autorelease];
+    ViewModel *viewModel = [[ViewModel new] autorelease];
     XCTestExpectation *expectation = [self expectationWithDescription:@"complete"];
     
     // when
-    [viewModel getNewsWithSuccess:^(NSArray<ItemModel *> *array) {
+    [viewModel getNewsFromURL:[mockData getMockFileURL]
+                      success:^(NSArray<ItemModel *> *array) {
         
         // either then
         XCTAssertEqual([mockData getNumberOfItems], array.count);
@@ -120,7 +126,7 @@
         XCTAssertNotNil(error);
         [expectation fulfill];
         
-    } fromURL:[mockData getMockFileURL]];
+    }];
     
     [self waitForExpectations:@[expectation] timeout:15];
 }

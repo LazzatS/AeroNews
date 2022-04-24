@@ -16,48 +16,40 @@
 @implementation ViewModel
 
 #pragma mark - Custom initilizer
-- (instancetype)init {
+
++ (id<ViewModelProtocol>)newAlloc {
+    return [ViewModel alloc];
+}
+
+- (instancetype)initWithNetworkLayer: (id<NetworkLayerProtocol>)networkLayer {
     
     self = [super init];
     
     if (self) {
         self.news = @[];
-        self.fetcher = [[[NetworkLayer alloc]
-                         initWithLoader:[[[Loader alloc] init] autorelease]     // no
-                         andParser:[[[XMLParser alloc] init] autorelease]]
-                        autorelease];
+        self.networkLayer = networkLayer;
     }
     
     return self;
 }
 
 #pragma mark - Get news method
-- (void)getNewsWithSuccess: (void (^)(NSArray<ItemModel *> *))successCompletion
-                     error: (void (^)(NSError *))errorCompletion
-                   fromURL: (NSURL *)url {
+
+- (void)getNewsFromURL:(NSURL *)url
+               success:(void (^)(NSArray<ItemModel *> *))successCompletion
+                 error:(void (^)(NSError *))errorCompletion {
     
-    __weak ViewModel *weakSelf = self;
-    
-    self.thread = [[[NSThread alloc] initWithBlock:^{                                           // to loader
-        [weakSelf.fetcher fetchNews:^(NSArray<ItemModel *> *news, NSError *error) {
-            
-            if (news == nil) {
-                errorCompletion(error);
-            }
-            
-            NSMutableArray *newsItems = [[[NSMutableArray alloc] init] autorelease];
-            
-            for (ItemModel *newsItem in news) {
-                [newsItems addObject:newsItem];
-            }
-            
-            [weakSelf setNews:newsItems];
-            successCompletion(newsItems);
-            
-        } fromURL:url];
-    }] autorelease];
-    
-    [self.thread start];
+    [self.networkLayer fetchNewsFromURL:url
+                            withSuccess:^(NSArray<ItemModel *> *news) {
+        
+        [self setNews:news];
+        successCompletion(news);
+        
+    } withError:^(NSError *error) {
+        
+        errorCompletion(error);
+        
+    }];
 }
 
 #pragma mark - Get number of items

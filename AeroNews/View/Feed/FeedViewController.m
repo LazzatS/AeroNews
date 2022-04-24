@@ -1,13 +1,13 @@
 //
-//  NewsFeedViewController.m
+//  FeedViewController.m
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 02.02.2022.
 //
 
-#import "NewsFeedViewController.h"
+#import "FeedViewController.h"
 
-@interface NewsFeedViewController ()
+@interface FeedViewController ()
 
 #pragma mark - Dependencies
 @property (nonatomic, strong) id<ViewModelProtocol> viewModel;
@@ -18,14 +18,14 @@
 
 @end
 
-@implementation NewsFeedViewController
+@implementation FeedViewController
 
-- (instancetype)init {
+- (instancetype)initWithViewModel: (id<ViewModelProtocol>)viewModel {
     
     self = [super init];
     
     if (self) {
-        self.viewModel = [[[ViewModel alloc] init] autorelease];
+        self.viewModel = viewModel;
     }
     
     return self;
@@ -48,29 +48,34 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     [self getData];
 }
 
 - (void)getData {
     [self.activityIndicator startAnimating];
     
-    __weak NewsFeedViewController *weakSelf = self;
-    [self.viewModel getNewsWithSuccess:^(NSArray<ItemModel *> *news) {
+    __weak FeedViewController *weakSelf = self;
+    
+    [self.viewModel getNewsFromURL:[NSURL URLWithString:urlString]
+                           success:^(NSArray<ItemModel *> *news) {
         
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [NSThread sleepForTimeInterval:5.0f];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.activityIndicator stopAnimating];
             [weakSelf.newsTableView reloadData];
-            
-//        });
+        });
         
-    } error:^(NSError *error) {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-            [self showAlert:@"Error"
-                    message:[error localizedDescription]
-                         on:self];
-//        });
-    } fromURL:[NSURL URLWithString:urlString]];
+    }
+                             error:^(NSError *error) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf showAlert:@"Error"
+                        message:[error localizedDescription]
+                             on:self];
+        });
+        
+    }];
 }
 
 
@@ -82,8 +87,8 @@
                                                     self.view.frame.size.height)
                            style:UITableViewStylePlain] autorelease];
     
-    [self.newsTableView registerClass:TableViewCell.self
-               forCellReuseIdentifier: @"TableViewCell"];
+    [self.newsTableView registerClass:FeedTableViewCell.self
+               forCellReuseIdentifier: @"FeedTableViewCell"];
     self.newsTableView.dataSource = self;
     self.newsTableView.delegate = self;
     
@@ -113,7 +118,7 @@
 
 #pragma mark - table view delegate methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsItemDetailsViewController *newsItemVC = [[NewsItemDetailsViewController new] autorelease];
+    ItemWebViewViewController *newsItemVC = [[ItemWebViewViewController new] autorelease];
     NSURL *url = [NSURL URLWithString:[self.viewModel newsItemAtIndexPath:indexPath].link];
     newsItemVC.url = url;
     [self.navigationController pushViewController:newsItemVC animated:YES];
@@ -126,8 +131,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier
-                                                          forIndexPath:indexPath];
+    FeedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier
+                                                              forIndexPath:indexPath];
     ItemModel *newsItem = [self.viewModel newsItemAtIndexPath:indexPath];
     [cell configure:newsItem];
     

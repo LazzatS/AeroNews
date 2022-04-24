@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewsFeedViewController.h"
+#import "FeedViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

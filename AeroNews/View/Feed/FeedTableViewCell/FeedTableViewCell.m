@@ -1,20 +1,20 @@
 //
-//  TableViewCell.m
+//  FeedTableViewCell.m
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 05.02.2022.
 //
 
-#import "TableViewCell.h"
+#import "FeedTableViewCell.h"
 
-@interface TableViewCell ()
+@interface FeedTableViewCell ()
 
 @property (nonatomic, strong) UIView *customContentView;
 @property (nonatomic, strong) UIButton *infoButton;
 
 @end
 
-@implementation TableViewCell
+@implementation FeedTableViewCell
 
 - (void)configure:(ItemModel *)item {
     [self createCustomContentView];

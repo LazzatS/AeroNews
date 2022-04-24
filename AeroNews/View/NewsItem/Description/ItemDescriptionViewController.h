@@ -1,5 +1,5 @@
 //
-//  NewsItemDescriptionViewController.h
+//  ItemDescriptionViewController.h
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 18.04.2022.
@@ -9,7 +9,7 @@
 #import "ItemModel.h"
 #import "Constants.h"
 
-@interface NewsItemDescriptionViewController : UIViewController
+@interface ItemDescriptionViewController : UIViewController
 
 - (instancetype)initWithNewsItem: (ItemModel *)newsItem;
 

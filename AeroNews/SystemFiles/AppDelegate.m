@@ -16,23 +16,47 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    NewsFeedViewController *newsFeedVC = [[NewsFeedViewController new] autorelease];
+    UIViewController *rootVC = [self configureRootViewController];
+    UINavigationController *nav = [self setupNavControllerWithRootVC:rootVC];
     
-    UINavigationController *nav = [[[UINavigationController alloc]
-                                    initWithRootViewController:newsFeedVC]
-                                   autorelease];
-    nav.navigationBar.backgroundColor = [UIColor systemBackgroundColor];
-    
-    
-    self.window = [[[UIWindow alloc]
-                    initWithFrame:[[UIScreen mainScreen] bounds]]
-                   autorelease];
-    self.window.backgroundColor = [UIColor systemBackgroundColor];
-    [self.window setRootViewController:nav];
-    [self.window makeKeyAndVisible];
+    self.window = [self setupWindowWithRootVC:nav];
     
     return YES;
 }
 
+- (UIViewController *)configureRootViewController {
+    Loader *loader = [[[Loader alloc] init] autorelease];
+    XMLParser *parser = [[[XMLParser alloc] init] autorelease];
+    
+    NetworkLayer *networkLayer = [[[NetworkLayer alloc]
+                                   initWithLoader:loader
+                                   andParser:parser] autorelease];
+    
+    ViewModel *viewModel = [[[ViewModel newAlloc]
+                             initWithNetworkLayer:networkLayer] autorelease];
+    
+    FeedViewController *newsFeedVC = [[FeedViewController alloc]
+                                          initWithViewModel:viewModel];
+    return newsFeedVC;
+}
+
+- (UINavigationController *)setupNavControllerWithRootVC: (UIViewController *)rootVC {
+    UINavigationController *nav = [[[UINavigationController alloc]
+                                    initWithRootViewController:rootVC]
+                                   autorelease];
+    nav.navigationBar.backgroundColor = [UIColor systemBackgroundColor];
+    return nav;
+}
+
+- (UIWindow *)setupWindowWithRootVC: (UIViewController *)rootVC {
+    UIWindow *window = [[[UIWindow alloc]
+                         initWithFrame:[[UIScreen mainScreen] bounds]]
+                        autorelease];
+    window.backgroundColor = [UIColor systemBackgroundColor];
+    [window setRootViewController:rootVC];
+    [window makeKeyAndVisible];
+    
+    return window;
+}
 
 @end

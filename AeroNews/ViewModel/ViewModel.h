@@ -10,8 +10,10 @@
 
 @interface ViewModel : NSObject <ViewModelProtocol>
 
-# pragma mark - Public properties
-@property (nonatomic, strong) id<NetworkLayerProtocol> fetcher;
-@property (nonatomic, weak) NSThread *thread;
+#pragma mark - Public properties
+@property (nonatomic, strong) id<NetworkLayerProtocol> networkLayer;
+
+#pragma mark - Custom initializer
+- (instancetype)initWithNetworkLayer: (id<NetworkLayerProtocol>)networkLayer;
 
 @end

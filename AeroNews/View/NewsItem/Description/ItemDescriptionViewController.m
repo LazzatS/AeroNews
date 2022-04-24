@@ -5,15 +5,15 @@
 //  Created by Lazzat Seiilova on 18.04.2022.
 //
 
-#import "NewsItemDescriptionViewController.h"
+#import "ItemDescriptionViewController.h"
 
-@interface NewsItemDescriptionViewController ()
+@interface ItemDescriptionViewController ()
 
 @property (nonatomic, strong) ItemModel *item;
 
 @end
 
-@implementation NewsItemDescriptionViewController
+@implementation ItemDescriptionViewController
 
 - (instancetype)initWithNewsItem: (ItemModel *)newsItem {
     

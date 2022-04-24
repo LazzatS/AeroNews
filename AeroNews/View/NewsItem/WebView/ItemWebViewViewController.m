@@ -1,13 +1,13 @@
 //
-//  NewsItemDetailsViewController.m
+//  ItemWebViewViewController.m
 //  AeroNews
 //
 //  Created by Lazzat Seiilova on 04.04.2022.
 //
 
-#import "NewsItemDetailsViewController.h"
+#import "ItemWebViewViewController.h"
 
-@interface NewsItemDetailsViewController ()
+@interface ItemWebViewViewController ()
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UIProgressView *progressView;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation NewsItemDetailsViewController
+@implementation ItemWebViewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

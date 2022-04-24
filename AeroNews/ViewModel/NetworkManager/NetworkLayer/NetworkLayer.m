@@ -32,45 +32,41 @@
 }
 
 #pragma mark - Method to fetch items loaded from url
-- (void)fetchNews:(void (^)(NSArray<ItemModel *> *, NSError *))completion
-          fromURL:(NSURL *)url {
+
+- (void)fetchNewsFromURL:(NSURL *)url
+             withSuccess:(void (^)(NSArray<ItemModel *> *))successCompletion
+               withError:(void (^)(NSError *))errorCompletion {
     
     __weak NetworkLayer *weakSelf = self;
-    [weakSelf.newsLoader loadNewsFromURL:url
-                              completion:^(NSData *data,
-                                           NSError *loadError) {
-        
-            if (data == nil) {
-                completion(nil, loadError);
-            } else {
-                
+    
+    NSThread *thread = [[NSThread alloc] initWithBlock:^{
+        [weakSelf.newsLoader loadNewsFromURL:url
+                                  completion:^(NSData *data,
+                                               NSError *loadError) {
+            
+            if (loadError != nil) {
+                errorCompletion(loadError);
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.newsParser parseNews:data
                                     completion:^(NSArray<ItemModel *> *array,
                                                  NSError *parseError) {
                     
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        completion(array, parseError);
-                    });
-                    
+                    if (parseError != nil) {
+                        
+                        errorCompletion(parseError);
+                        
+                    }
+                        
+                    successCompletion(array);
+                        
                 }];
-                
-            }
+            });
+            
+        }];
     }];
     
-//    [weakSelf.newsLoader loadNews:^(NSData *newsData, NSError *loadError) {
-//
-//        if (newsData == nil) {
-//            completion(nil, loadError);
-//        }
-//
-//        [weakSelf.newsParser parseNews:newsData
-//                            completion:^(NSArray<NewsItemModel *> *newsItems,
-//                                         NSError *parseError) {
-//
-//            completion(newsItems, parseError);
-//
-//        }];
-//    } from:url];
+    [thread start];
 }
-
 @end

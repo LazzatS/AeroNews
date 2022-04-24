@@ -10,7 +10,8 @@
 
 @protocol NetworkLayerProtocol <NSObject>
 
-- (void)fetchNews:(void (^)(NSArray<ItemModel *> *, NSError *))completion
-          fromURL: (NSURL *)url;
+- (void)fetchNewsFromURL:(NSURL *)url
+             withSuccess:(void (^)(NSArray<ItemModel *> *))successCompletion
+               withError:(void (^)(NSError *))errorCompletion;
 
 @end

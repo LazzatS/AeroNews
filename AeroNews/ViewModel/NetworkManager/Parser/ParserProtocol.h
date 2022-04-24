@@ -11,6 +11,7 @@
 @protocol ParserProtocol <NSObject>
 
 - (void)parseNews:(NSData *)data
-       completion:(void(^)(NSArray<ItemModel *> *, NSError *))completion;
+       completion:(void (^)(NSArray<ItemModel *> *,
+                            NSError *))completion;
 
 @end

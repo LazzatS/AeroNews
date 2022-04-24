@@ -13,8 +13,4 @@
              completion: (void (^)(NSData *,
                                    NSError *))completion;
 
-@optional
-- (void)onError;
-- (void)onSuccess;
-
 @end
