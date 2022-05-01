@@ -25,15 +25,8 @@
 }
 
 - (UIViewController *)configureRootViewController {
-    Loader *loader = [[[Loader alloc] init] autorelease];
-    XMLParser *parser = [[[XMLParser alloc] init] autorelease];
     
-    NetworkLayer *networkLayer = [[[NetworkLayer alloc]
-                                   initWithLoader:loader
-                                   andParser:parser] autorelease];
-    
-    ViewModel *viewModel = [[[ViewModel newAlloc]
-                             initWithNetworkLayer:networkLayer] autorelease];
+    ViewModel *viewModel = [ViewModel newAllocInit];
     
     FeedViewController *newsFeedVC = [[FeedViewController alloc]
                                           initWithViewModel:viewModel];

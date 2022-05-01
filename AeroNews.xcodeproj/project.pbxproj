@@ -23,6 +23,8 @@
 		A54967E2280B368800BAA8D7 /* MockData.xml in Resources */ = {isa = PBXBuildFile; fileRef = A54967E1280B368800BAA8D7 /* MockData.xml */; };
 		A54967E3280BFDFD00BAA8D7 /* MockData.xml in Resources */ = {isa = PBXBuildFile; fileRef = A54967E1280B368800BAA8D7 /* MockData.xml */; };
 		A54967E6280C34C500BAA8D7 /* MockData.m in Sources */ = {isa = PBXBuildFile; fileRef = A54967E5280C34C500BAA8D7 /* MockData.m */; };
+		A58C6BEB281EB88C00B836AF /* ItemDisplayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A58C6BEA281EB88C00B836AF /* ItemDisplayModel.m */; };
+		A58C6BEE281EBB1D00B836AF /* ItemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A58C6BED281EBB1D00B836AF /* ItemViewModel.m */; };
 		A59277A227DDE22D0071D490 /* ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A59277A127DDE22D0071D490 /* ViewModel.m */; };
 		A59A5CA127FA2F480020C4C1 /* ItemWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A59A5CA027FA2F480020C4C1 /* ItemWebViewViewController.m */; };
 		A5BD94C0280D4C220079FFD9 /* ItemDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BD94BF280D4C220079FFD9 /* ItemDescriptionViewController.m */; };
@@ -77,6 +79,11 @@
 		A54967E4280C34C500BAA8D7 /* MockData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockData.h; sourceTree = "<group>"; };
 		A54967E5280C34C500BAA8D7 /* MockData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockData.m; sourceTree = "<group>"; };
 		A57ED1602807612200F96E58 /* LoaderProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoaderProtocol.h; sourceTree = "<group>"; };
+		A58C6BE9281EB88C00B836AF /* ItemDisplayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemDisplayModel.h; sourceTree = "<group>"; };
+		A58C6BEA281EB88C00B836AF /* ItemDisplayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemDisplayModel.m; sourceTree = "<group>"; };
+		A58C6BEC281EBB1D00B836AF /* ItemViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemViewModel.h; sourceTree = "<group>"; };
+		A58C6BED281EBB1D00B836AF /* ItemViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemViewModel.m; sourceTree = "<group>"; };
+		A58C6BEF281EBB2D00B836AF /* ItemViewModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemViewModelProtocol.h; sourceTree = "<group>"; };
 		A59277A027DDE22D0071D490 /* ViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewModel.h; sourceTree = "<group>"; };
 		A59277A127DDE22D0071D490 /* ViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewModel.m; sourceTree = "<group>"; };
 		A59A5C9F27FA2F480020C4C1 /* ItemWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemWebViewViewController.h; sourceTree = "<group>"; };
@@ -137,9 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				128C00AD27AAA5670097F1C4 /* Info.plist */,
-				128C00D127AAB2D70097F1C4 /* ItemModel */,
-				A592779F27DDD4D10071D490 /* ViewModel */,
-				1295758B27AEC0710031950D /* View */,
+				A5BD94C1280D4EAD0079FFD9 /* Constants */,
+				A58C6BE6281EB76100B836AF /* Feed */,
+				A524D35827FDB652004BC5B6 /* NewsItem */,
 				A592779E27DDD3F10071D490 /* SystemFiles */,
 			);
 			path = AeroNews;
@@ -163,13 +170,13 @@
 			path = AeroNewsUITests;
 			sourceTree = "<group>";
 		};
-		128C00D127AAB2D70097F1C4 /* ItemModel */ = {
+		128C00D127AAB2D70097F1C4 /* FeedItemModel */ = {
 			isa = PBXGroup;
 			children = (
 				128C00D227AAB3040097F1C4 /* ItemModel.h */,
 				128C00D327AAB3040097F1C4 /* ItemModel.m */,
 			);
-			path = ItemModel;
+			path = FeedItemModel;
 			sourceTree = "<group>";
 		};
 		128C00D527AAC1A70097F1C4 /* Loader */ = {
@@ -192,33 +199,31 @@
 			path = Parser;
 			sourceTree = "<group>";
 		};
-		1295758B27AEC0710031950D /* View */ = {
+		1295758B27AEC0710031950D /* FeedView */ = {
 			isa = PBXGroup;
 			children = (
-				A5BD94C1280D4EAD0079FFD9 /* Constants */,
-				A524D35D27FE2374004BC5B6 /* Feed */,
-				A524D35827FDB652004BC5B6 /* NewsItem */,
+				A524D35D27FE2374004BC5B6 /* FeedTableView */,
 			);
-			path = View;
+			path = FeedView;
 			sourceTree = "<group>";
 		};
 		A524D35827FDB652004BC5B6 /* NewsItem */ = {
 			isa = PBXGroup;
 			children = (
-				A5BD94BD280D4BF60079FFD9 /* WebView */,
-				A5BD94BC280D4BE30079FFD9 /* Description */,
+				A58C6BE7281EB82F00B836AF /* ItemDisplayModel */,
+				A58C6BE5281EB72C00B836AF /* ItemViewModel */,
+				A58C6BE8281EB84B00B836AF /* ItemViews */,
 			);
 			path = NewsItem;
 			sourceTree = "<group>";
 		};
-		A524D35D27FE2374004BC5B6 /* Feed */ = {
+		A524D35D27FE2374004BC5B6 /* FeedTableView */ = {
 			isa = PBXGroup;
 			children = (
-				128C00A227AAA5650097F1C4 /* FeedViewController.h */,
-				128C00A327AAA5650097F1C4 /* FeedViewController.m */,
+				A58C6BE0281E591C00B836AF /* FeedViewController */,
 				A5C8B9FE280EAA96000BB03D /* FeedTableViewCell */,
 			);
-			path = Feed;
+			path = FeedTableView;
 			sourceTree = "<group>";
 		};
 		A54967D7280AB82B00BAA8D7 /* NetworkLayer */ = {
@@ -239,6 +244,53 @@
 				A54967E5280C34C500BAA8D7 /* MockData.m */,
 			);
 			path = MockData;
+			sourceTree = "<group>";
+		};
+		A58C6BE0281E591C00B836AF /* FeedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				128C00A227AAA5650097F1C4 /* FeedViewController.h */,
+				128C00A327AAA5650097F1C4 /* FeedViewController.m */,
+			);
+			path = FeedViewController;
+			sourceTree = "<group>";
+		};
+		A58C6BE5281EB72C00B836AF /* ItemViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A58C6BEF281EBB2D00B836AF /* ItemViewModelProtocol.h */,
+				A58C6BEC281EBB1D00B836AF /* ItemViewModel.h */,
+				A58C6BED281EBB1D00B836AF /* ItemViewModel.m */,
+			);
+			path = ItemViewModel;
+			sourceTree = "<group>";
+		};
+		A58C6BE6281EB76100B836AF /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				128C00D127AAB2D70097F1C4 /* FeedItemModel */,
+				A592779F27DDD4D10071D490 /* FeedViewModel */,
+				1295758B27AEC0710031950D /* FeedView */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		A58C6BE7281EB82F00B836AF /* ItemDisplayModel */ = {
+			isa = PBXGroup;
+			children = (
+				A58C6BE9281EB88C00B836AF /* ItemDisplayModel.h */,
+				A58C6BEA281EB88C00B836AF /* ItemDisplayModel.m */,
+			);
+			path = ItemDisplayModel;
+			sourceTree = "<group>";
+		};
+		A58C6BE8281EB84B00B836AF /* ItemViews */ = {
+			isa = PBXGroup;
+			children = (
+				A5BD94BD280D4BF60079FFD9 /* WebView */,
+				A5BD94BC280D4BE30079FFD9 /* Description */,
+			);
+			path = ItemViews;
 			sourceTree = "<group>";
 		};
 		A592779D27DDD3B10071D490 /* NetworkManager */ = {
@@ -263,15 +315,13 @@
 			path = SystemFiles;
 			sourceTree = "<group>";
 		};
-		A592779F27DDD4D10071D490 /* ViewModel */ = {
+		A592779F27DDD4D10071D490 /* FeedViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A5F879392808BCF700345C73 /* ViewModelProtocol.h */,
-				A59277A027DDE22D0071D490 /* ViewModel.h */,
-				A59277A127DDE22D0071D490 /* ViewModel.m */,
+				A5E23543281EEC44008BC4FB /* ViewModel */,
 				A592779D27DDD3B10071D490 /* NetworkManager */,
 			);
-			path = ViewModel;
+			path = FeedViewModel;
 			sourceTree = "<group>";
 		};
 		A5BD94BC280D4BE30079FFD9 /* Description */ = {
@@ -308,6 +358,16 @@
 				1295758D27AEC0B50031950D /* FeedTableViewCell.m */,
 			);
 			path = FeedTableViewCell;
+			sourceTree = "<group>";
+		};
+		A5E23543281EEC44008BC4FB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A5F879392808BCF700345C73 /* ViewModelProtocol.h */,
+				A59277A027DDE22D0071D490 /* ViewModel.h */,
+				A59277A127DDE22D0071D490 /* ViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A5F879302808AE7600345C73 /* MockFiles */ = {
@@ -459,8 +519,10 @@
 				1295758E27AEC0B50031950D /* FeedTableViewCell.m in Sources */,
 				128C00DD27AAC3220097F1C4 /* XMLParser.m in Sources */,
 				A54967DA280AB85000BAA8D7 /* NetworkLayer.m in Sources */,
+				A58C6BEE281EBB1D00B836AF /* ItemViewModel.m in Sources */,
 				A59277A227DDE22D0071D490 /* ViewModel.m in Sources */,
 				A5BD94C4280D4F9C0079FFD9 /* Constants.m in Sources */,
+				A58C6BEB281EB88C00B836AF /* ItemDisplayModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
