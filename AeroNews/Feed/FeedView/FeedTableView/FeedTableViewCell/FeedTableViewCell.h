@@ -16,6 +16,9 @@
 #pragma mark - Public methods
 - (void)configure:(ItemModel *)item;
 
+#pragma mark - Info button tap handler
+@property (nonatomic, copy) void(^infoButtonTapHandler)(void);
+
 #pragma mark - Private methods
 - (void)createCustomContentView;
 - (void)setupTitleLayout:(UILabel *)titleLabel;

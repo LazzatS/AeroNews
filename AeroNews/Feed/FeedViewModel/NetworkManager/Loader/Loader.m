@@ -29,9 +29,11 @@
 - (void)loadNews:(void (^)(NSData *,
                            NSError *))completion {
     
-    NSError *urlError = [[NSError alloc] initWithDomain:@"URL Error"
-                                                   code:1
-                                               userInfo:nil];
+    NSError *urlError = [[[NSError alloc]
+                          initWithDomain:@"URL Error"
+                          code:1
+                          userInfo:nil]
+                         autorelease];
     
     if (self.url == nil) {
         

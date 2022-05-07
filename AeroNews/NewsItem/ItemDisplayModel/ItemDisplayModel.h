@@ -11,6 +11,8 @@
 
 @property (nonatomic, strong) NSString *itemTitle;
 @property (nonatomic, strong) NSString *itemURL;
+@property (nonatomic, strong) NSString *itemDate;
+@property (nonatomic, strong) NSString *itemDescription;
 
 - (instancetype)initWithItemModel:(ItemModel *)itemModel;
 

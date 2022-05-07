@@ -101,7 +101,7 @@ static NSString *reuseIdentifier = @"FeedTableViewCell";
 }
 
 - (void)didTapInfoButton {
-    NSLog(@"tapped info button");
+    _infoButtonTapHandler();
 }
 
 @end

@@ -6,11 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ItemModel.h"
+#import "ItemViewModelProtocol.h"
+#import "ItemWebViewViewController.h"
 #import "Constants.h"
 
 @interface ItemDescriptionViewController : UIViewController
 
-- (instancetype)initWithNewsItem: (ItemModel *)newsItem;
+- (instancetype)initWithViewModel: (id<ItemViewModelProtocol>)viewModel;
 
 @end

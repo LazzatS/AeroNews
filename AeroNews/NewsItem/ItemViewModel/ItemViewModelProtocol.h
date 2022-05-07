@@ -20,4 +20,10 @@
 #pragma mark - Web view request methods
 - (void)loadWebView:(void (^)(NSURLRequest *))completion;
 
+#pragma mark - Details view methods
+- (void)getNewsItemDetails: (void (^)(NSString *,
+                                      NSString *,
+                                      NSString *))completion;
+- (NSURL *)getCurrentURL;
+
 @end

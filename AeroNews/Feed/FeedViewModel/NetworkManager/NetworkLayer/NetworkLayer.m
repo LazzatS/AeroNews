@@ -39,9 +39,9 @@
     
     __weak NetworkLayer *weakSelf = self;
     
-    NSThread *thread = [[NSThread alloc] initWithBlock:^{
+    NSThread *thread = [[[NSThread alloc] initWithBlock:^{
         
-        [self.newsLoader loadNews:^(NSData *data, NSError *loadError) {
+        [weakSelf.newsLoader loadNews:^(NSData *data, NSError *loadError) {
             if (data == nil) {
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -69,7 +69,7 @@
             }];
             
         }];
-    }];
+    }] autorelease];
     
     [thread start];
 }

@@ -8,12 +8,14 @@
 #import "FeedViewController.h"
 #import "ItemViewModelProtocol.h"
 #import "ItemViewModel.h"
+#import "ItemDescriptionViewController.h"
 
 @interface FeedViewController ()
 
 #pragma mark - Dependencies
 @property (nonatomic, strong) id<ViewModelProtocol> viewModel;
 @property (nonatomic, strong) ItemWebViewViewController *itemWebViewVC;
+@property (nonatomic, strong) ItemDescriptionViewController *itemDescriptionVC;
 
 #pragma mark - UI elements
 @property (nonatomic, weak) UITableView *newsTableView;
@@ -133,6 +135,12 @@
                                                               forIndexPath:indexPath];
     ItemModel *newsItem = [self.viewModel newsItemAtIndexPath:indexPath];
     [cell configure:newsItem];
+    
+    cell.infoButtonTapHandler = ^{
+        ItemViewModel *itemViewModel = [ItemViewModel newAllocInit:[self.viewModel newsItemAtIndexPath:indexPath]];
+        self.itemDescriptionVC = [[[ItemDescriptionViewController alloc] initWithViewModel:itemViewModel] autorelease];
+        [self.navigationController presentViewController:self.itemDescriptionVC animated:YES completion:nil];
+    };
     
     return cell;
 }

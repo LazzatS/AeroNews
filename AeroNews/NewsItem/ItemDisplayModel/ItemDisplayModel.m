@@ -16,6 +16,8 @@
     if (self) {
         self.itemTitle = itemModel.title;
         self.itemURL = itemModel.link;
+        self.itemDate = itemModel.pubDate;
+        self.itemDescription = itemModel.itemDescription;
     }
     
     return self;
